@@ -155,7 +155,7 @@
       border:1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.04);
       object-fit: cover;
-      object-position: 50% 0%; 
+      object-position: 50% 0%;
       flex: 0 0 auto;
       box-shadow: 0 10px 30px rgba(0,0,0,.30);
     }
@@ -184,7 +184,6 @@
       font-family:var(--font);
     }
 
-    /* About: expandable */
     .about-panel{
       margin-top:12px;
       padding:14px 14px;
@@ -282,7 +281,6 @@
       font-size:.88rem;
     }
 
-    /* Theme toggle (hidden panel) */
     .theme-wrap{
       display:flex;
       align-items:center;
@@ -324,7 +322,6 @@
     }
     .themebtn[aria-pressed="true"]{ border-color:var(--accent); }
 
-    /* Payments panel */
     .pay-panel{
       margin-top:10px;
       padding:12px;
@@ -367,9 +364,6 @@
       .pay-panel{ width:100%; min-width:unset; }
     }
 
-    /* ===========================
-       ARCADE UPGRADE
-       ===========================*/
     body[data-theme="arcade"]::before{
       content:"";
       position:fixed;
@@ -471,11 +465,6 @@
       text-transform: uppercase;
     }
 
-    /* ===========================
-       DECADE UPGRADES
-       ===========================*/
-
-    /* 70s */
     body[data-theme="seventies"]{
       --bg:#0c0703;
       --accent:#fbbf24;
@@ -526,7 +515,6 @@
       font-size: .82rem;
     }
 
-    /* 80s */
     body[data-theme="eighties"]{
       --bg:#040313;
       --accent:#fb7185;
@@ -582,7 +570,6 @@
       font-size:.82rem;
     }
 
-    /* 90s */
     body[data-theme="nineties"]{
       --bg:#050708;
       --accent:#34d399;
@@ -688,6 +675,11 @@
           </div>
         </section>
 
+        <section class="section" id="upcomingSection" aria-label="Upcoming shows">
+          <h2>Catch Me On Stage In…</h2>
+          <div class="grid" id="upcomingGrid"></div>
+        </section>
+
         <section class="section" aria-label="Links">
           <h2>Links</h2>
           <div class="grid" id="linksGrid"></div>
@@ -766,11 +758,41 @@
       aboutExpanded: {
         lead: "Hi, I’m Jeremy. I like understanding how things work and making them better, whether that’s a project, a process, or something in my own life.",
         paragraphs: [
-         "I’m naturally curious, and I’m at my best when I’m learning, building, or solving problems. I’m also a dad, and that keeps me grounded and focused on what matters.",
+          "I’m naturally curious, and I’m at my best when I’m learning, building, or solving problems. I’m also a dad, and that keeps me grounded and focused on what matters.",
           "I’m especially interested in leadership and how people think, grow, make decisions, and handle pressure. The Bible and Stoic philosophy have both shaped how I approach responsibility, discipline, and perspective. My time in the U.S. Marine Corps reinforced those values and taught me the importance of staying calm and steady when things get hard.",
           "A phrase I come back to often is \"slow is smooth, smooth is fast.\" It’s a reminder to do things the right way, with patience and attention, because that’s what actually moves you forward. I like pushing my limits and improving over time through consistency. Fitness helps me stay centered, music is always part of my day, and I’ve learned that real growth usually starts right outside your comfort zone."
         ]
       },
+
+      upcomingShows: [
+        {
+          title: "Just Duet",
+          tag: "Fundraiser",
+          date: "Mar 21, 2026",
+          time: "7:00 PM",
+          venue: "The Colonial Theatre, Laconia, NH",
+          role: "Surprise Appearance",
+          url: "https://www.powerhousenh.org/justduet"
+        },
+        {
+          title: "The Hobbit: A Staged Radio Play",
+          tag: "Theatre",
+          date: "Mar 27-29, 2026",
+          time: "Mar 27: 7:30 PM • Mar 28: 2:00 PM & 7:30 PM • Mar 29: 2:00 PM",
+          venue: "Winnipesaukee Playhouse, Meredith, NH",
+          role: "Narrator, Gollum",
+          url: "https://www.winnipesaukeeplayhouse.org/the-hobbit.html"
+        },
+        {
+          title: "The Magician's Elephant",
+          tag: "Theatre",
+          date: "May 1-3, 2026",
+          time: "May 1: 7:30 PM • May 2: 7:30 PM • May 3: 2:00 PM",
+          venue: "The Colonial Theatre, Laconia, NH",
+          role: "Puppeteer",
+          url: "https://www.powerhousenh.org/magicianselephant"
+        }
+      ],
 
       links: [
         { title: "Work stuff",        tag: "Professional", desc: "LinkedIn",  url: "https://www.linkedin.com/in/jeremyallanhart/" },
@@ -821,7 +843,6 @@
     $("emailLink").href = `mailto:${SITE.email}`;
     $("vcfLink").href = SITE.vcfPath;
 
-    // Avatar (optional)
     const avatarEl = $("avatar");
     if (avatarEl){
       if (SITE.showAvatar && SITE.avatar?.src){
@@ -832,7 +853,6 @@
       }
     }
 
-    // Featured section (optional)
     const featuredSection = $("featuredSection");
     if (!SITE.showFeatured){
       featuredSection.remove();
@@ -842,7 +862,6 @@
       $("featuredLink").href = SITE.featured.url;
     }
 
-    // About expanded (paragraphs)
     $("aboutLead").textContent = SITE.aboutExpanded.lead;
     const aboutBody = $("aboutBody");
     aboutBody.innerHTML = "";
@@ -852,7 +871,36 @@
       aboutBody.appendChild(para);
     });
 
-    // Links grid (title + tag + desc)
+    const upcomingGrid = $("upcomingGrid");
+    const upcomingSection = $("upcomingSection");
+
+    if (!SITE.upcomingShows || SITE.upcomingShows.length === 0) {
+      upcomingSection.remove();
+    } else {
+      upcomingGrid.innerHTML = "";
+      SITE.upcomingShows.forEach((show) => {
+        const a = document.createElement("a");
+        a.className = "link";
+        a.href = show.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+
+        a.innerHTML = `
+          <div class="top">
+            <strong>${escapeHtml(show.title)}</strong>
+            <span class="tag">${escapeHtml(show.tag)}</span>
+          </div>
+          <div class="desc">
+            ${escapeHtml(show.date)} • ${escapeHtml(show.time)}<br>
+            ${escapeHtml(show.venue)}<br>
+            Role: ${escapeHtml(show.role)}
+          </div>
+        `;
+
+        upcomingGrid.appendChild(a);
+      });
+    }
+
     const grid = $("linksGrid");
     grid.innerHTML = "";
     SITE.links.forEach((l) => {
@@ -872,7 +920,6 @@
       grid.appendChild(a);
     });
 
-    // Payments list
     const payList = $("payList");
     payList.innerHTML = "";
     (SITE.payments || []).forEach((p) => {
@@ -891,18 +938,12 @@
       payList.appendChild(a);
     });
 
-    // ----------------------------
-    // Enter jumps to Contact
-    // ----------------------------
     document.addEventListener("keydown", (e) => {
       const tag = (document.activeElement && document.activeElement.tagName) ? document.activeElement.tagName.toLowerCase() : "";
       if (tag === "button" || tag === "a" || tag === "input" || tag === "textarea" || tag === "select") return;
       if (e.key === "Enter") $("contact")?.scrollIntoView({behavior:"smooth"});
     });
 
-    // ----------------------------
-    // About toggle
-    // ----------------------------
     const aboutToggle = $("aboutToggle");
     const aboutPanel = $("about-panel");
 
@@ -916,9 +957,6 @@
       setAboutOpen(!open);
     });
 
-    // ----------------------------
-    // Theme + payments toggles
-    // ----------------------------
     const themeToggle = $("themeToggle");
     const themePanel = $("theme-panel");
 
@@ -946,7 +984,6 @@
       setPayPanelOpen(!open);
     });
 
-    // Close panels on outside click
     document.addEventListener("click", (e) => {
       const inTheme = e.target.closest("#theme-panel") || e.target.closest("#themeToggle");
       const inPay = e.target.closest("#pay-panel") || e.target.closest("#payToggle");
@@ -954,7 +991,6 @@
       if (!inPay) setPayPanelOpen(false);
     });
 
-    // Escape closes panels
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape"){
         setThemePanelOpen(false);
@@ -963,9 +999,6 @@
       }
     });
 
-    // ----------------------------
-    // Theme handling: URL param > manual stored > seasonal auto
-    // ----------------------------
     const valid = new Set([
       "modern","arcade","seventies","eighties","nineties",
       "winter","spring","summer","fall",
@@ -1027,7 +1060,6 @@
       history.replaceState({}, "", u);
     }
 
-    // Initial theme pick
     const params = new URLSearchParams(location.search);
     const fromUrl = params.get("theme");
 
@@ -1049,7 +1081,6 @@
       }
     }
 
-    // Theme button clicks
     themeButtons.forEach(b => {
       if (b.hasAttribute("data-seasonal")){
         b.addEventListener("click", () => setAutoSeasonal());
