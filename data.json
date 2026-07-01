@@ -1,0 +1,443 @@
+{
+  "profile": {
+    "name": "Jeremy Hart",
+    "initials": "JH",
+    "phoneDisplay": "+1 904-608-0347",
+    "phoneHref": "+19046080347",
+    "email": "jeremy.allan.hart@gmail.com",
+    "contactCard": "jeremy-hart.vcf",
+    "scheduleUrl": "https://cal.com/jeremy-allan-hart",
+    "eyebrow": "Jeremy Hart",
+    "headline": "Quick links, current projects, and a little about me.",
+    "intro": "A simple place to find what I’m working on, what I’m involved in, planned activities, field notes, useful links, and the easiest ways to connect.",
+    "aboutLabel": "About Me",
+    "aboutHeading": "A little context beyond the links",
+    "aboutBadge": "Operations · Technology · Theatre · Fitness · Local Projects",
+    "aboutTagline": "Curious by default. Resilient by design.",
+    "aboutParagraphs": [
+      "I like understanding how things work and making them better, whether that’s a project, a process, or something in my own life.",
+      "My background runs through software, operations, HR, finance, local news, theatre, and practical systems.",
+      "Fitness keeps me centered. Theatre keeps me human. “Slow is smooth, smooth is fast” is a reminder I come back to often."
+    ],
+    "aboutBullets": [
+      "Systems and operations",
+      "Theatre and practical builds",
+      "Fitness and endurance",
+      "Local projects and community"
+    ]
+  },
+  "featured": {
+    "label": "On Stage Next",
+    "title": "Shrek The Musical",
+    "description": "Aug 7-9, 2026 · The Colonial Theatre · Puppeteer",
+    "url": "https://www.powerhousenh.org/shrek"
+  },
+  "quickLinks": [
+    {
+      "title": "Save my contact",
+      "description": "Add my contact card to your phone.",
+      "icon": "+",
+      "url": "jeremy-hart.vcf",
+      "primary": true
+    },
+    {
+      "title": "Text me",
+      "description": "Best for quick questions.",
+      "icon": "☎",
+      "url": "sms:+19046080347"
+    },
+    {
+      "title": "Email me",
+      "description": "Best for anything that needs context.",
+      "icon": "@",
+      "url": "mailto:jeremy.allan.hart@gmail.com"
+    },
+    {
+      "title": "Schedule time",
+      "description": "Use Cal.com to find a time.",
+      "icon": "◷",
+      "url": "https://cal.com/jeremy-allan-hart",
+      "external": true
+    }
+  ],
+  "stageDoor": {
+    "label": "Stage Door",
+    "onStage": {
+      "heading": "What’s next on stage",
+      "description": "Upcoming shows and theatre projects.",
+      "shows": [
+        {
+          "title": "Shrek The Musical",
+          "date": "Aug 7-9, 2026",
+          "location": "The Colonial Theatre, 609 Main Street, Laconia NH",
+          "role": "Puppeteer",
+          "status": "Upcoming",
+          "times": "Fri & Sat 7:30 PM · Sun 2:00 PM",
+          "url": "https://www.powerhousenh.org/shrek",
+          "active": true
+        },
+        {
+          "title": "Big Bad",
+          "date": "Sept 13-14, 2026",
+          "location": "Prescott Farm Environmental Education Center, 928 White Oaks Road, Laconia NH",
+          "role": "TBD",
+          "status": "Pending",
+          "times": "Times TBD",
+          "url": "https://www.powerhousenh.org/bigbad",
+          "active": false
+        },
+        {
+          "title": "Peter and the Starcatcher",
+          "date": "Oct 9-11, 2026",
+          "location": "The Colonial Theatre, 609 Main Street, Laconia NH",
+          "role": "Stage Manager",
+          "status": "Upcoming",
+          "times": "Fri & Sat 7:30 PM · Sun 2:00 PM",
+          "url": "https://www.powerhousenh.org/starcatcher",
+          "active": true
+        }
+      ]
+    }
+  },
+  "plannedActivities": {
+    "label": "Planned Activities",
+    "heading": "Plans people can join",
+    "description": "Things I’m planning that others can join, with the details posted when they’re ready.",
+    "items": []
+  },
+  "fieldNotes": {
+    "label": "Field Notes",
+    "heading": "Writing, training, reading, and photos",
+    "description": "Places where I leave breadcrumbs: thoughts, workouts, books, pictures, and short updates.",
+    "links": [
+      {
+        "title": "Substack",
+        "url": "https://jeremyallanhart.substack.com/"
+      },
+      {
+        "title": "Strava",
+        "url": "https://www.strava.com/athletes/18895402"
+      },
+      {
+        "title": "Goodreads",
+        "url": "https://www.goodreads.com/user/show/12091117-jeremy-hart"
+      },
+      {
+        "title": "Instagram",
+        "url": "https://www.instagram.com/jeremyallanhart/"
+      }
+    ]
+  },
+  "usefulLinks": {
+    "label": "Useful Links",
+    "heading": "A few places to find me online",
+    "description": "Profiles, socials, video, and a few practical links.",
+    "links": [
+      {
+        "title": "LinkedIn",
+        "description": "Professional background and work stuff.",
+        "icon": "in",
+        "tag": "Work",
+        "url": "https://www.linkedin.com/in/jeremyallanhart/"
+      },
+      {
+        "title": "YouTube",
+        "description": "Videos, experiments, and whatever makes it out of the edit cave.",
+        "icon": "▶",
+        "tag": "Video",
+        "url": "https://www.youtube.com/@jeremyallanhart"
+      },
+      {
+        "title": "X",
+        "description": "Short updates and assorted signal flares.",
+        "icon": "X",
+        "tag": "Updates",
+        "url": "https://x.com/jeremyhart"
+      },
+      {
+        "title": "Facebook",
+        "description": "Facebook profile.",
+        "icon": "f",
+        "tag": "Social",
+        "url": "https://www.facebook.com/hart.jeremy"
+      }
+    ]
+  },
+  "payments": [
+    {
+      "title": "Cash App",
+      "description": "$jeremyallanhart",
+      "url": "https://cash.app/$jeremyallanhart"
+    },
+    {
+      "title": "Venmo",
+      "description": "@jeremyhart",
+      "url": "https://venmo.com/jeremyhart"
+    }
+  ],
+  "themes": {
+    "default": {
+      "name": "Base green",
+      "colors": {
+        "--forest": "#0f4a3d",
+        "--forest-2": "#0a3a31",
+        "--forest-3": "#073028",
+        "--mint": "#b9f36d",
+        "--mint-2": "#e1fac6",
+        "--cream": "#f6f4ed",
+        "--season-bg-start": "#174f45",
+        "--season-bg-end": "#f6f4ed"
+      }
+    },
+    "months": {
+      "1": {
+        "name": "January winter blue",
+        "colors": {
+          "--forest": "#123a56",
+          "--forest-2": "#0b2b43",
+          "--forest-3": "#061f32",
+          "--mint": "#9edcff",
+          "--mint-2": "#dff4ff",
+          "--cream": "#f3f8fb",
+          "--season-bg-start": "#133b5c",
+          "--season-bg-end": "#f3f8fb"
+        }
+      },
+      "2": {
+        "name": "February rose",
+        "colors": {
+          "--forest": "#63203a",
+          "--forest-2": "#4b172b",
+          "--forest-3": "#35101f",
+          "--mint": "#ffb7c8",
+          "--mint-2": "#ffe2ea",
+          "--cream": "#fff6f8",
+          "--season-bg-start": "#63203a",
+          "--season-bg-end": "#fff6f8"
+        }
+      },
+      "3": {
+        "name": "March early spring",
+        "colors": {
+          "--forest": "#214f35",
+          "--forest-2": "#173b28",
+          "--forest-3": "#10291d",
+          "--mint": "#a8e878",
+          "--mint-2": "#e4f8d6",
+          "--cream": "#f5f8ef",
+          "--season-bg-start": "#214f35",
+          "--season-bg-end": "#f5f8ef"
+        }
+      },
+      "4": {
+        "name": "April pastel",
+        "colors": {
+          "--forest": "#315365",
+          "--forest-2": "#223d4b",
+          "--forest-3": "#172b35",
+          "--mint": "#ffd6eb",
+          "--mint-2": "#e8f4ff",
+          "--cream": "#fff9f2",
+          "--season-bg-start": "#315365",
+          "--season-bg-end": "#fff9f2"
+        }
+      },
+      "5": {
+        "name": "May fresh green",
+        "colors": {
+          "--forest": "#15533a",
+          "--forest-2": "#0e3d2a",
+          "--forest-3": "#092b1d",
+          "--mint": "#bdf27b",
+          "--mint-2": "#e7fad0",
+          "--cream": "#f6f8ef",
+          "--season-bg-start": "#15533a",
+          "--season-bg-end": "#f6f8ef"
+        }
+      },
+      "6": {
+        "name": "June lake teal",
+        "colors": {
+          "--forest": "#0e5260",
+          "--forest-2": "#0a3d48",
+          "--forest-3": "#062a32",
+          "--mint": "#95f0d8",
+          "--mint-2": "#dcfff6",
+          "--cream": "#f2fbf8",
+          "--season-bg-start": "#0e5260",
+          "--season-bg-end": "#f2fbf8"
+        }
+      },
+      "7": {
+        "name": "July summer blue",
+        "colors": {
+          "--forest": "#173f77",
+          "--forest-2": "#102e58",
+          "--forest-3": "#0a203e",
+          "--mint": "#ffd166",
+          "--mint-2": "#fff1c7",
+          "--cream": "#f8fbff",
+          "--season-bg-start": "#173f77",
+          "--season-bg-end": "#f8fbff"
+        }
+      },
+      "8": {
+        "name": "August golden green",
+        "colors": {
+          "--forest": "#35512b",
+          "--forest-2": "#263d1f",
+          "--forest-3": "#1a2b15",
+          "--mint": "#f1c85b",
+          "--mint-2": "#fff0bc",
+          "--cream": "#fbf7ea",
+          "--season-bg-start": "#35512b",
+          "--season-bg-end": "#fbf7ea"
+        }
+      },
+      "9": {
+        "name": "September harvest",
+        "colors": {
+          "--forest": "#5b3b1d",
+          "--forest-2": "#442b15",
+          "--forest-3": "#2f1e0f",
+          "--mint": "#f0b24d",
+          "--mint-2": "#ffe4b8",
+          "--cream": "#faf3e8",
+          "--season-bg-start": "#5b3b1d",
+          "--season-bg-end": "#faf3e8"
+        }
+      },
+      "10": {
+        "name": "October fall",
+        "colors": {
+          "--forest": "#3a2a22",
+          "--forest-2": "#261b16",
+          "--forest-3": "#17100d",
+          "--mint": "#ff8a3d",
+          "--mint-2": "#ffe0c7",
+          "--cream": "#fbf2ea",
+          "--season-bg-start": "#3a2a22",
+          "--season-bg-end": "#fbf2ea"
+        }
+      },
+      "11": {
+        "name": "November cranberry",
+        "colors": {
+          "--forest": "#4a2525",
+          "--forest-2": "#351a1a",
+          "--forest-3": "#241111",
+          "--mint": "#d9a441",
+          "--mint-2": "#f7e3b8",
+          "--cream": "#f8f1e8",
+          "--season-bg-start": "#4a2525",
+          "--season-bg-end": "#f8f1e8"
+        }
+      },
+      "12": {
+        "name": "December winter blue",
+        "colors": {
+          "--forest": "#11385f",
+          "--forest-2": "#0b2946",
+          "--forest-3": "#071d32",
+          "--mint": "#b8e4ff",
+          "--mint-2": "#e4f5ff",
+          "--cream": "#f3f8fc",
+          "--season-bg-start": "#11385f",
+          "--season-bg-end": "#f3f8fc"
+        }
+      }
+    },
+    "holidays": [
+      {
+        "name": "Valentine's Day",
+        "start": "02-08",
+        "end": "02-15",
+        "colors": {
+          "--forest": "#7a1934",
+          "--forest-2": "#561024",
+          "--forest-3": "#370915",
+          "--mint": "#ffb3c7",
+          "--mint-2": "#ffe3eb",
+          "--cream": "#fff7fa",
+          "--season-bg-start": "#7a1934",
+          "--season-bg-end": "#fff7fa"
+        }
+      },
+      {
+        "name": "Easter",
+        "start": "03-25",
+        "end": "04-07",
+        "colors": {
+          "--forest": "#4b5f7a",
+          "--forest-2": "#35445c",
+          "--forest-3": "#222d3e",
+          "--mint": "#f7c7e3",
+          "--mint-2": "#dff4ff",
+          "--cream": "#fffaf0",
+          "--season-bg-start": "#4b5f7a",
+          "--season-bg-end": "#fffaf0"
+        }
+      },
+      {
+        "name": "Fourth of July",
+        "start": "06-28",
+        "end": "07-06",
+        "colors": {
+          "--forest": "#153b75",
+          "--forest-2": "#0f2c57",
+          "--forest-3": "#091d3a",
+          "--mint": "#e63946",
+          "--mint-2": "#ffffff",
+          "--cream": "#f8fbff",
+          "--season-bg-start": "#153b75",
+          "--season-bg-end": "#f8fbff"
+        }
+      },
+      {
+        "name": "Halloween",
+        "start": "10-24",
+        "end": "10-31",
+        "colors": {
+          "--forest": "#1c1714",
+          "--forest-2": "#100d0b",
+          "--forest-3": "#080605",
+          "--mint": "#ff7a1a",
+          "--mint-2": "#ffe0c0",
+          "--cream": "#fbf1e7",
+          "--season-bg-start": "#1c1714",
+          "--season-bg-end": "#fbf1e7"
+        }
+      },
+      {
+        "name": "Christmas",
+        "start": "12-18",
+        "end": "12-26",
+        "colors": {
+          "--forest": "#0f4a3d",
+          "--forest-2": "#0a332b",
+          "--forest-3": "#061f1a",
+          "--mint": "#d72638",
+          "--mint-2": "#fff3f4",
+          "--cream": "#f8fbf6",
+          "--season-bg-start": "#0f4a3d",
+          "--season-bg-end": "#f8fbf6"
+        }
+      },
+      {
+        "name": "New Year",
+        "start": "12-27",
+        "end": "01-03",
+        "colors": {
+          "--forest": "#12192f",
+          "--forest-2": "#0b1020",
+          "--forest-3": "#060914",
+          "--mint": "#d6b75c",
+          "--mint-2": "#f8edc8",
+          "--cream": "#f6f7fb",
+          "--season-bg-start": "#12192f",
+          "--season-bg-end": "#f6f7fb"
+        }
+      }
+    ]
+  }
+}
