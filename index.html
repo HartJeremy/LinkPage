@@ -178,6 +178,57 @@
       .drawer{ position:static; }
       .drawer-panel{ left:10px; right:10px; width:auto; }
     }
+  
+    .curtain-cta{
+      grid-column:1 / -1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:22px 24px;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,.82), rgba(255,255,255,.5) 42%, rgba(255,255,255,.36)),
+        linear-gradient(135deg, rgba(255,59,87,.12), rgba(245,185,66,.12));
+      border:1px solid rgba(16,58,48,.16);
+      box-shadow:0 22px 70px rgba(14,44,38,.12);
+      text-decoration:none;
+      color:inherit;
+      margin-top:6px;
+    }
+    .curtain-cta:hover{ transform:translateY(-2px); box-shadow:0 26px 80px rgba(14,44,38,.18); }
+    .curtain-mark{
+      width:52px;
+      height:52px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:#ffdce7;
+      font-size:1.35rem;
+      flex:0 0 auto;
+    }
+    .curtain-copy{ flex:1; min-width:0; }
+    .curtain-copy strong{
+      display:block;
+      font-size:1.18rem;
+      color:var(--ink);
+      margin-bottom:4px;
+    }
+    .curtain-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+    }
+    .curtain-action{
+      font-weight:900;
+      color:var(--accent);
+      white-space:nowrap;
+    }
+    @media (max-width:720px){
+      .curtain-cta{ align-items:flex-start; flex-direction:column; }
+      .curtain-action{ white-space:normal; }
+    }
+
   </style>
 </head>
 <body>
@@ -304,11 +355,15 @@
             </a>
     
           
-            <a class="card show-card" href="theatre.html">
-              <div class="card-icon">🎭</div>
-              <div class="card-top"><strong>Theatre Resume</strong><span class="tag">Credits</span></div>
-              <p>Shows, workshops, and production credits.</p>
-              <p><strong style="font-size:.95rem;">Open:</strong> Full theatre page</p>
+            
+
+            <a class="curtain-cta" href="theatre.html">
+              <div class="curtain-mark">🎭</div>
+              <div class="curtain-copy">
+                <strong>Open the Curtains</strong>
+                <p>View my theatre resume, show history, workshops, and production credits.</p>
+              </div>
+              <div class="curtain-action">View theatre page →</div>
             </a>
 </div>
         </section>
