@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeremy Hart | Theatre Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a0a0e;
+    --charcoal:#15151c;
+    --charcoal-2:#1e1e28;
+    --spotlight:#f5b942;
+    --spotlight-dim:#c99530;
+    --marquee-red:#ff3b57;
+    --reel-teal:#23d3b0;
+    --fog:#f3f1ec;
+    --fog-dim:#8f8c9c;
+    --hairline:#2a2a35;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; color-scheme:dark;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--fog);
+    font-family:'Manrope', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+  }
+
+  h1,h2,h3{margin:0;}
+  .display{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:.02em;
+    font-weight:400;
+  }
+  .mono{
+    font-family:'Space Mono', monospace;
+  }
+
+  /* ===== HERO ===== */
+  .marquee{
+    position:relative;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 30%, rgba(245,185,66,.16) 0%, transparent 70%),
+      var(--void);
+    padding:88px 24px 64px;
+    text-align:center;
+    overflow:hidden;
+    border-bottom:1px solid var(--hairline);
+  }
+  .marquee::after{
+    content:"";
+    position:absolute;
+    top:0; left:-30%;
+    width:60%; height:100%;
+    background:linear-gradient(100deg, transparent 0%, rgba(245,185,66,.06) 45%, rgba(245,185,66,.1) 50%, rgba(245,185,66,.06) 55%, transparent 100%);
+    animation:sweep 7s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes sweep{
+    0%{transform:translateX(0);}
+    50%{transform:translateX(220%);}
+    100%{transform:translateX(0);}
+  }
+  .bulbs{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin:0 auto 30px;
+  }
+  .bulbs span{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--spotlight);
+    box-shadow:0 0 10px 2px rgba(245,185,66,.7);
+    animation:twinkle 2.8s ease-in-out infinite;
+  }
+  .bulbs span:nth-child(3n){animation-delay:.5s;}
+  .bulbs span:nth-child(5n){animation-delay:1.1s;}
+  @keyframes twinkle{
+    0%,100%{opacity:1;}
+    50%{opacity:.25;}
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--spotlight);
+    margin-bottom:18px;
+    position:relative;
+    z-index:1;
+  }
+  .marquee h1{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:clamp(4rem, 16vw, 8.5rem);
+    line-height:.88;
+    letter-spacing:.01em;
+    color:var(--fog);
+    text-shadow:0 0 60px rgba(245,185,66,.25);
+    position:relative;
+    z-index:1;
+  }
+  .marquee .tagline{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--fog-dim);
+    margin-top:18px;
+    position:relative;
+    z-index:1;
+  }
+  .marquee p.bio{
+    max-width:540px;
+    margin:26px auto 0;
+    font-size:17px;
+    color:#c7c4d1;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ===== STATS ===== */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px,1fr));
+    background:var(--charcoal);
+    border-bottom:1px solid var(--hairline);
+    max-width:1040px;
+    margin:0 auto;
+  }
+  .stat{
+    text-align:center;
+    padding:30px 12px;
+    border-right:1px solid var(--hairline);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:2.8rem;
+    color:var(--spotlight);
+    line-height:1;
+    text-shadow:0 0 24px rgba(245,185,66,.35);
+  }
+  .stat .lbl{
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-top:10px;
+    color:var(--fog-dim);
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section{
+    max-width:1080px;
+    margin:0 auto;
+    padding:70px 24px 10px;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    margin-bottom:6px;
+  }
+  .section-head h2{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:2.6rem;
+    letter-spacing:.02em;
+    color:var(--fog);
+  }
+  .section-head .rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+  }
+  .section-sub{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    color:var(--fog-dim);
+    margin-bottom:32px;
+  }
+
+  /* ===== FILTER TABS ===== */
+  .filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:36px;
+  }
+  .filter-btn{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    background:var(--charcoal);
+    border:1px solid var(--hairline);
+    color:var(--fog) !important;
+    -webkit-text-fill-color:var(--fog);
+    padding:10px 18px;
+    cursor:pointer;
+    border-radius:3px;
+    transition:background .2s, border-color .2s, transform .15s;
+    appearance:none;
+    -webkit-appearance:none;
+  }
+  .filter-btn span{color:inherit;}
+  .filter-btn:hover{border-color:var(--spotlight); transform:translateY(-1px);}
+  .filter-btn.active{
+    background:var(--spotlight);
+    border-color:var(--spotlight);
+    color:var(--void) !important;
+    -webkit-text-fill-color:var(--void);
+  }
+  .filter-btn:focus-visible{outline:2px solid var(--spotlight); outline-offset:2px;}
+
+  .company-select{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    background:var(--charcoal);
+    border:1px solid var(--hairline);
+    color:var(--fog);
+    padding:10px 16px;
+    border-radius:3px;
+    cursor:pointer;
+  }
+  .company-select:focus-visible{outline:2px solid var(--spotlight); outline-offset:2px;}
+
+  /* ===== UPCOMING (ticket-row list) ===== */
+  .upcoming-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .upcoming-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    flex-wrap:wrap;
+    background:var(--charcoal);
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--company-color, var(--spotlight));
+    padding:20px 22px;
+    border-radius:4px;
+    transition:border-color .2s, background .2s;
+  }
+  .upcoming-item:hover{background:var(--charcoal-2);}
+  .upcoming-item .info{flex:1 1 260px; min-width:0;}
+  .upcoming-item .info h3{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.6rem;
+    letter-spacing:.01em;
+    margin:8px 0 4px;
+    color:var(--fog);
+  }
+  .upcoming-item .when{
+    text-align:right;
+    flex:0 0 auto;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--fog-dim);
+  }
+  .upcoming-item .when .dates{
+    font-size:14px;
+    color:var(--fog);
+    margin-bottom:4px;
+  }
+  .upcoming-item .when .company{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:6px;
+    margin-top:8px;
+  }
+  .upcoming-item .when .company .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--company-color, var(--spotlight));
+  }
+
+  /* ===== CALLBOARD / POSTER GRID ===== */
+  .callboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+    gap:18px;
+  }
+  .card{
+    background:var(--charcoal);
+    border:1px solid var(--hairline);
+    border-top:3px solid var(--company-color, var(--spotlight));
+    border-radius:4px;
+    padding:20px 18px 16px;
+    position:relative;
+    transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    background:var(--charcoal-2);
+    box-shadow:0 12px 30px -8px rgba(0,0,0,.6), 0 0 0 1px var(--company-color, var(--spotlight)) inset;
+  }
+  .card .top-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:8px;
+  }
+  .tag{
+    display:inline-block;
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:2px;
+    color:var(--void);
+    margin-bottom:12px;
+  }
+  .tag.onstage{background:var(--marquee-red); color:#fff;}
+  .tag.crew{background:var(--reel-teal);}
+  .code-chip{
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    color:var(--fog-dim);
+    background:var(--void);
+    border:1px solid var(--hairline);
+    padding:2px 7px;
+    border-radius:2px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .card h3{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.5rem;
+    letter-spacing:.01em;
+    color:var(--fog);
+    line-height:1.05;
+    margin-bottom:6px;
+  }
+  .card .role{
+    color:var(--fog-dim);
+    font-size:.92rem;
+    white-space:pre-line;
+    margin-bottom:14px;
+  }
+  .card .venue,
+  .card .times{
+    font-size:.85rem;
+    color:var(--fog-dim);
+    margin-bottom:2px;
+  }
+  .card .meta{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--fog-dim);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid var(--hairline);
+    padding-top:10px;
+    margin-top:4px;
+    gap:8px;
+  }
+  .card .meta .company{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    min-width:0;
+  }
+  .card .meta .company .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--company-color, var(--spotlight));
+    flex-shrink:0;
+  }
+  .card .meta .company span.name{
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .card[hidden]{display:none;}
+
+  /* ===== WORKSHOPS ===== */
+  .notebook{
+    background:var(--charcoal);
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--spotlight);
+    border-radius:4px;
+    padding:22px 26px;
+    margin-top:6px;
+  }
+  .notebook ul{list-style:none; margin:0; padding:0;}
+  .notebook li{
+    padding:14px 0;
+    border-bottom:1px solid var(--hairline);
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .notebook li:last-child{border-bottom:none;}
+  .notebook .wtitle{font-weight:600; color:var(--fog);}
+  .notebook .wdate{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--fog-dim);
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    text-align:center;
+    padding:60px 24px 70px;
+    margin-top:70px;
+    border-top:1px solid var(--hairline);
+    background:
+      radial-gradient(ellipse 60% 100% at 50% 100%, rgba(245,185,66,.08) 0%, transparent 70%),
+      var(--charcoal);
+  }
+  footer .close{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.8rem;
+    letter-spacing:.02em;
+    color:var(--fog);
+    margin-bottom:12px;
+  }
+  footer .contact{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--spotlight);
+  }
+
+  @media (max-width:600px){
+    body{font-size:16px;}
+    .section{padding:50px 16px 6px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="marquee">
+  <div class="bulbs">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="eyebrow"><a href="index.html" style="color:inherit;text-decoration:none;">← Main Page</a> · Now Appearing</div>
+  <h1>JEREMY</h1>
+  <div class="tagline">Onstage &amp; Backstage — Lakes Region, NH</div>
+  <p class="bio">USMC veteran turned community theatre regular, equally at home holding a scene under the lights or running the show from behind them. Performing with Powerhouse Theatre Collaborative and Winni Players since 2023.</p>
+</header>
+
+<div class="stats" id="stats"></div>
+
+<section class="section" id="upcoming-section">
+  <div class="section-head">
+    <h2 class="display">On the Horizon</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="section-sub">booked, not yet run — these move to the callboard (and the tally above) once the curtain closes</p>
+  <div class="upcoming-list" id="upcoming-list"></div>
+</section>
+
+<section class="section" id="callboard-section">
+  <div class="section-head">
+    <h2 class="display">The Callboard</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="section-sub">every completed show, sorted newest to oldest — tap a filter to sort by what I was doing</p>
+
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-filter="all">All (<span id="count-all"></span>)</button>
+    <button class="filter-btn" data-filter="onstage">Onstage (<span id="count-onstage"></span>)</button>
+    <button class="filter-btn" data-filter="crew">Crew &amp; Backstage (<span id="count-crew"></span>)</button>
+    <select class="company-select" id="company-select">
+      <option value="all">All Companies</option>
+    </select>
+  </div>
+
+  <div class="callboard" id="callboard"></div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2 class="display">Workshops &amp; Training</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="section-sub">time spent building the craft between shows</p>
+  <div class="notebook">
+    <ul id="workshops"></ul>
+  </div>
+</section>
+
+<footer>
+  <div class="close">Break a leg — see you in the callboard.</div>
+  <div class="contact"><a href="index.html" style="color:inherit;">Back to main page</a> · jeremy.allan.hart@gmail.com</div>
+</footer>
+
+<script>
+// COMPANIES — the single source of truth for every theatre you
+// perform with. To add a new company later:
+//   1. Add one entry below: {name, prefix, extraPrefix (optional)}
+//      — prefix must match the code prefix you use on the sheet
+//        (e.g. "PTC" matches codes like "PTC-14").
+//      - extraPrefix is optional, for a company's non-mainstage
+//        events (workshops go in the separate `workshops` list).
+//   2. Give shows from that company a code using that prefix.
+// Everything else — stat cards, card accent colors, the company
+// filter dropdown — updates itself automatically. No color is
+// required; if you skip it, one gets assigned from the palette.
+// ============================================================
+const palette = ["#4fc3f7","#9b7bff","#ff8a3d","#c792ea","#8bd450","#ff5f8f","#5eead4","#fbbf24"];
+const companies = [
+  {name:"Powerhouse Theatre Collaborative", prefix:"PTC", extraPrefix:"xPTC", color:"#4fc3f7"},
+  {name:"Winni Players", prefix:"WP", color:"#9b7bff"},
+  // {name:"New Company", prefix:"NC"},  <-- example: add future companies like this
+];
+companies.forEach((c,i) => { if(!c.color) c.color = palette[i % palette.length]; });
+
+function matchCode(code){
+  for(const c of companies){
+    if(c.extraPrefix && code.startsWith(c.extraPrefix + '-')) return {company:c, isExtra:true};
+    if(code.startsWith(c.prefix + '-')) return {company:c, isExtra:false};
+  }
+  return null;
+}
+function companiesForShow(show){
+  const codes = show.code.split(/[,\s]+/).filter(Boolean);
+  const matched = codes.map(matchCode).filter(Boolean);
+  const seen = new Set();
+  return matched.filter(m => {
+    if(seen.has(m.company.name)) return false;
+    seen.add(m.company.name);
+    return true;
+  }).map(m => m.company);
+}
+
+// ---- Show data (from Play Resume workbook) ----
+const shows = [
+  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2023-12", dates:"Dec 15-17, 2023", code:"PTC-1"},
+  {company:"Powerhouse Theatre Collaborative", show:"Play Festival", role:"Heartless — Jerry", type:"onstage", date:"2024-06", dates:"Jun 1-2, 2024", code:"PTC-2"},
+  {company:"Powerhouse Theatre Collaborative", show:"Alice's Adventure in Wonderland", role:"Caterpillar", type:"onstage", date:"2024-09", dates:"Sep 15, 21-22, 2024", code:"PTC-3"},
+  {company:"Powerhouse Theatre Collaborative", show:"The Crucible", role:"Cheever", type:"onstage", date:"2024-10", dates:"Oct 11-13, 2024", code:"PTC-4"},
+  {company:"Powerhouse Theatre Collaborative", show:"Power Chords Holiday Concert", role:"Choir", type:"onstage", date:"2024-11a", dates:"Nov 15 & 17, 2024", code:"PTC-5"},
+  {company:"Winni Players", show:"The WXYZ Radio Hour: American Radio Classics Live On Stage", role:"The Lone Ranger — Jeremy\nChallenge of the Yukon — Randy\nThe Green Hornet — Kato / 2nd Cop", type:"onstage", date:"2024-11b", dates:"Nov 21-24, 2024", code:"WP-1"},
+  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2024-12", dates:"Dec 13-15, 2024", code:"PTC-6"},
+  {company:"Winni Players", show:"Treasure Island: A Radio Play", role:"Jim Hawkins (narrator)", type:"onstage", date:"2025-03a", dates:"Mar 27-30, 2025", code:"WP-2"},
+  {company:"Powerhouse Theatre Collaborative", show:"The Hunchback of Notre Dame", role:"Choir", type:"onstage", date:"2025-05a", dates:"May 2-4, 2025", code:"PTC-7"},
+  {company:"Powerhouse Theatre Collaborative", show:"Play Festival", role:"Hands Off — Liam", type:"onstage", date:"2025-05b", dates:"May 31-Jun 1, 2025", code:"PTC-8"},
+  {company:"Powerhouse Theatre Collaborative", show:"Elf: The Musical", role:"Security Guard 1 / Policeman 2 / Fake Santa 4 / Man #1 — David Lambert", type:"onstage", date:"2025-08", dates:"Aug 8-10, 2025", code:"PTC-9"},
+  {company:"Powerhouse Theatre Collaborative", show:"Journey through Neverland", role:"Gutless Glen", type:"onstage", date:"2025-09", dates:"Sep 14, 20-21, 2025", code:"PTC-10"},
+  {company:"Powerhouse Theatre Collaborative", show:"Power Chords Holiday Concert", role:"Choir", type:"onstage", date:"2025-11a", dates:"Nov 21 & 23, 2025", code:"PTC-11"},
+  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2025-12a", dates:"Dec 11-14, 2025", code:"PTC-12"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Fezziwig After Dark", role:"Mr. Fezziwig\nUnholy Dancer", type:"onstage", date:"2025-12b", dates:"Dec 13, 2025", code:"xPTC-1"},
+  {company:"Winni Players & Powerhouse", show:"The Play That Goes Wrong", role:"Stage Crew & Assistant Props", type:"crew", date:"2026-03a", dates:"Mar 6-8 & 12-15, 2026", code:"WP-3, PTC-13"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Just Duet", role:"Simba — Hakuna Matata", type:"onstage", date:"2026-03b", dates:"Mar 21, 2026", code:"xPTC-2"},
+  {company:"Winni Players", show:"The Hobbit Radio Play", role:"Narrator, Gollum", type:"onstage", date:"2026-03c", dates:"Mar 27-29, 2026", code:"WP-4"},
+  {company:"Powerhouse Theatre Collaborative", show:"The Magician's Elephant", role:"Puppeteer", type:"onstage", date:"2026-05a", dates:"May 1-3, 2026", code:"PTC-14"},
+  {company:"Powerhouse Theatre Collaborative", show:"Play Festival 2026", role:"In The Rough — Jay", type:"onstage", date:"2026-05b", dates:"May 30-31, 2026", code:"PTC-15"},
+  {company:"Powerhouse Theatre Collaborative", show:"Shrek: The Musical", role:"Puppeteer", type:"onstage", date:"2026-08", dates:"Aug 7-9, 2026", code:"PTC-16"},
+  {company:"Powerhouse Theatre Collaborative", show:"Peter and the Starcatcher", role:"Stage Manager", type:"crew", status:"upcoming", date:"2026-10", dates:"Oct 9-11, 2026", venue:"The Colonial Theatre, 609 Main Street, Laconia NH", times:"Fri & Sat 7:30 PM · Sun 2:00 PM", code:"PTC-17"},
+  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", status:"upcoming", date:"2026-12", dates:"Dec 10-13, 2026", venue:"The Colonial Theatre, Laconia NH", code:"PTC-18"},
+];
+
+const workshops = [
+  {title:"Fall 2025 Powerhouse Improv Workshop", dates:"Tuesday evenings, Sept 16 – Nov 4, 2025"},
+  {title:"Powerhouse Choreo Workshop", dates:"Tuesdays, June – July 2025"},
+  {title:"Powerhouse Improv Workshop", dates:"Tuesdays, Apr 1 – May 27, 2025"},
+];
+
+// Split into what's actually happened vs. what's booked. Only completed
+// shows count toward the tally up top — upcoming ones show on their own
+// list and join the count once the run is over. To mark a show upcoming,
+// just add status:"upcoming"; drop that field (or delete it) once it's done.
+const completedShows = shows.filter(s => s.status !== 'upcoming');
+const upcomingShows = shows.filter(s => s.status === 'upcoming');
+
+completedShows.sort((a,b) => b.date.localeCompare(a.date)); // newest first
+upcomingShows.sort((a,b) => a.date.localeCompare(b.date));   // soonest first
+
+const tagLabel = {onstage:"Onstage", crew:"Crew & Backstage"};
+
+// ---- Upcoming list ----
+const upcomingEl = document.getElementById('upcoming-list');
+const upcomingSection = document.getElementById('upcoming-section');
+if(upcomingShows.length === 0){
+  upcomingSection.style.display = 'none';
+} else {
+  upcomingShows.forEach(s => {
+    const matched = companiesForShow(s);
+    const primary = matched[0];
+    const item = document.createElement('div');
+    item.className = 'upcoming-item';
+    if(primary) item.style.setProperty('--company-color', primary.color);
+    item.innerHTML = `
+      <div class="info">
+        <div class="top-row">
+          <span class="tag ${s.type}">${tagLabel[s.type]}</span>
+          <span class="code-chip">${s.code}</span>
+        </div>
+        <h3 class="display">${s.show}</h3>
+        <div class="role">${s.role}</div>
+        ${s.venue ? `<div class="venue">${s.venue}</div>` : ''}
+      </div>
+      <div class="when">
+        <div class="dates">${s.dates}</div>
+        ${s.times ? `<div class="times">${s.times}</div>` : ''}
+        <div class="company"><span class="dot"></span>${s.company}</div>
+      </div>`;
+    upcomingEl.appendChild(item);
+  });
+}
+
+// ---- Callboard (completed shows only) ----
+const board = document.getElementById('callboard');
+completedShows.forEach(s => {
+  const matched = companiesForShow(s);
+  const primary = matched[0];
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.type = s.type;
+  card.dataset.companies = matched.map(c => c.name).join('|');
+  if(primary) card.style.setProperty('--company-color', primary.color);
+  card.innerHTML = `
+    <div class="top-row">
+      <span class="tag ${s.type}">${tagLabel[s.type]}</span>
+      <span class="code-chip">${s.code}</span>
+    </div>
+    <h3 class="display">${s.show}</h3>
+    <div class="role">${s.role}</div>
+    <div class="meta">
+      <span class="company"><span class="dot"></span><span class="name">${s.company}</span></span>
+      <span>${s.dates}</span>
+    </div>`;
+  board.appendChild(card);
+});
+
+// counts (by role type, completed shows only)
+const counts = {all: completedShows.length, onstage:0, crew:0};
+completedShows.forEach(s => counts[s.type]++);
+document.getElementById('count-all').textContent = counts.all;
+document.getElementById('count-onstage').textContent = counts.onstage;
+document.getElementById('count-crew').textContent = counts.crew;
+
+// populate company dropdown from the companies config (auto-grows)
+const companySelect = document.getElementById('company-select');
+companies.forEach(c => {
+  const opt = document.createElement('option');
+  opt.value = c.name;
+  opt.textContent = c.name;
+  companySelect.appendChild(opt);
+});
+
+// combined filtering: role-type buttons AND company dropdown
+let activeType = 'all';
+function applyFilters(){
+  const activeCompany = companySelect.value;
+  document.querySelectorAll('.card').forEach(c => {
+    const typeOk = activeType === 'all' || c.dataset.type === activeType;
+    const companyOk = activeCompany === 'all' || c.dataset.companies.split('|').includes(activeCompany);
+    c.hidden = !(typeOk && companyOk);
+  });
+}
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if(!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeType = btn.dataset.filter;
+  applyFilters();
+});
+companySelect.addEventListener('change', applyFilters);
+
+// Stat cards — generated entirely from the `companies` config, so a
+// new company added up top automatically gets its own stat card here.
+// Counted the way the Powerhouse "show club" tracks it: by qualifying
+// code prefix, completed shows only (upcoming ones aren't in the tally
+// yet — see the "On the Horizon" list above). A collab show carries a
+// code per company, so it counts toward every company it's tagged with.
+const statData = [{num: completedShows.length, lbl:"Total Productions"}];
+companies.forEach(c => {
+  let main = 0, extra = 0;
+  completedShows.forEach(s => {
+    s.code.split(/[,\s]+/).filter(Boolean).forEach(code => {
+      if(c.extraPrefix && code.startsWith(c.extraPrefix + '-')) extra++;
+      else if(code.startsWith(c.prefix + '-')) main++;
+    });
+  });
+  statData.push({num: main, lbl: c.name});
+  if(c.extraPrefix) statData.push({num: extra, lbl: c.name + " Extra Events"});
+});
+statData.push({num: workshops.length, lbl:"Workshops"});
+
+// Set Build & Strike — not tracked yet. Fill this in once you start
+// logging it; leave as null to show "—" until then.
+const setBuildStrikeCount = null;
+statData.push({num: setBuildStrikeCount === null ? "—" : setBuildStrikeCount, lbl:"Set Build & Strike"});
+
+const statsEl = document.getElementById('stats');
+statData.forEach(s => {
+  const d = document.createElement('div');
+  d.className = 'stat';
+  d.innerHTML = `<div class="num">${s.num}</div><div class="lbl">${s.lbl}</div>`;
+  statsEl.appendChild(d);
+});
+
+// workshops
+const wEl = document.getElementById('workshops');
+workshops.forEach(w => {
+  const li = document.createElement('li');
+  li.innerHTML = `<span class="wtitle">${w.title}</span><span class="wdate">${w.dates}</span>`;
+  wEl.appendChild(li);
+});
+</script>
+</body>
+</html>
