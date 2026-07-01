@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
   <title>Jeremy Hart</title>
   <meta name="description" content="Quick links, current projects, and a little about Jeremy Hart." />
 
@@ -28,30 +27,19 @@
                  linear-gradient(180deg, var(--season-bg-start) 0 360px, var(--season-bg-end) 360px);
       line-height:1.45;
     }
+    body,.hero,.utility-bar,.brand-mark,.btn,.quick-icon,.card-icon,.benefit span,.date .month,.date .day,.primary-contact{
+      transition:background-color .35s ease, color .35s ease, border-color .35s ease;
+    }
     a{ color:inherit; }
     a:focus-visible, button:focus-visible{ outline:3px solid var(--mint); outline-offset:4px; border-radius:14px; }
 
     .page{ width:min(var(--max), calc(100% - 30px)); margin:0 auto; padding:36px 0 56px; }
     .site-shell{ border-radius:var(--radius-xl); background:var(--paper); box-shadow:var(--shadow); overflow:hidden; border:1px solid rgba(255,255,255,.24); }
-
-    .utility-bar{
-      min-height:30px; padding:6px 34px; background:var(--mint); color:var(--forest-3);
-      display:flex; align-items:center; justify-content:center; gap:28px; font-size:.82rem; font-weight:780;
-    }
+    .utility-bar{ min-height:30px; padding:6px 34px; background:var(--mint); color:var(--forest-3); display:flex; align-items:center; justify-content:center; gap:28px; font-size:.82rem; font-weight:780; }
     .utility-bar a{ text-decoration:none; }
 
-    .hero{
-      position:relative; color:var(--text); overflow:hidden;
-      background:radial-gradient(560px 300px at 78% 20%, rgba(185,243,109,.16), transparent 64%),
-                 radial-gradient(600px 360px at 20% 10%, rgba(255,255,255,.05), transparent 58%),
-                 var(--forest);
-    }
-    .hero::before{
-      content:""; position:absolute; inset:0; pointer-events:none; opacity:.12;
-      background:linear-gradient(135deg, transparent 0 44%, rgba(255,255,255,.20) 45%, transparent 46%),
-                 linear-gradient(155deg, transparent 0 56%, rgba(255,255,255,.16) 57%, transparent 58%);
-    }
-
+    .hero{ position:relative; color:var(--text); overflow:hidden; background:radial-gradient(560px 300px at 78% 20%, rgba(185,243,109,.16), transparent 64%), radial-gradient(600px 360px at 20% 10%, rgba(255,255,255,.05), transparent 58%), var(--forest); }
+    .hero::before{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.12; background:linear-gradient(135deg, transparent 0 44%, rgba(255,255,255,.20) 45%, transparent 46%), linear-gradient(155deg, transparent 0 56%, rgba(255,255,255,.16) 57%, transparent 58%); }
     .nav{ position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:22px 42px 16px; }
     .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:900; letter-spacing:-.03em; }
     .brand-mark{ width:35px; height:35px; border-radius:50%; display:grid; place-items:center; background:var(--mint); color:var(--forest-3); font-weight:950; letter-spacing:-.08em; }
@@ -70,13 +58,7 @@
     .btn.secondary{ background:transparent; color:#fff; border-color:rgba(255,255,255,.23); }
     .btn:hover{ filter:brightness(1.02); transform:translateY(-1px); }
 
-    .hero-visual{
-      position:relative; min-height:360px; border-radius:26px;
-      background:radial-gradient(circle at 60% 16%, var(--mint-2), rgba(185,243,109,.55) 32%, rgba(255,255,255,.12) 33%, rgba(255,255,255,.05) 70%),
-                 linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
-      border:1px solid rgba(255,255,255,.26); box-shadow:0 30px 60px rgba(0,0,0,.22);
-      overflow:hidden; display:grid; place-items:center; padding:28px;
-    }
+    .hero-visual{ position:relative; min-height:360px; border-radius:26px; background:radial-gradient(circle at 60% 16%, var(--mint-2), rgba(185,243,109,.55) 32%, rgba(255,255,255,.12) 33%, rgba(255,255,255,.05) 70%), linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.08)); border:1px solid rgba(255,255,255,.26); box-shadow:0 30px 60px rgba(0,0,0,.22); overflow:hidden; display:grid; place-items:center; padding:28px; }
     .hero-visual::before{ content:""; position:absolute; right:-16px; top:30px; color:rgba(15,74,61,.12); font-family:var(--serif); font-size:5rem; line-height:.8; letter-spacing:-.08em; font-weight:900; }
     .visual-card{ position:relative; z-index:1; width:100%; max-width:300px; padding:22px; border-radius:24px; background:rgba(255,255,255,.85); color:var(--ink); box-shadow:0 24px 50px rgba(0,0,0,.16); border:1px solid rgba(16,53,47,.10); backdrop-filter:blur(12px); text-decoration:none; }
     .visual-card small{ color:var(--forest); text-transform:uppercase; letter-spacing:.13em; font-size:.74rem; font-weight:950; }
@@ -94,7 +76,7 @@
     .section.compact{ padding-top:46px; padding-bottom:46px; }
     .section-head{ max-width:680px; margin:0 auto 32px; text-align:center; }
     .section-head.left{ text-align:left; margin-left:0; margin-right:0; }
-    .section-head small, .subsection-head small{ color:var(--forest); text-transform:uppercase; letter-spacing:.15em; font-weight:950; font-size:.75rem; }
+    .section-head small,.subsection-head small{ color:var(--forest); text-transform:uppercase; letter-spacing:.15em; font-weight:950; font-size:.75rem; }
     .section-head h2{ margin:8px 0 0; font-size:clamp(2rem, 4vw, 3rem); line-height:1.05; letter-spacing:-.05em; color:var(--ink); }
     .section-head p{ margin:12px 0 0; color:var(--muted-dark); }
 
@@ -152,12 +134,21 @@
     .pill:hover{ background:var(--mint-2); }
 
     footer{ padding:24px 42px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; color:var(--muted-dark); background:#fff; border-top:1px solid var(--line); font-size:.92rem; }
+    .footer-tools{ align-items:center; }
     .drawer{ position:relative; display:inline-block; }
-    .drawer-panel{ position:absolute; right:0; bottom:calc(100% + 10px); width:min(360px, calc(100vw - 32px)); padding:14px; border-radius:20px; border:1px solid var(--line); background:#fff; box-shadow:0 22px 70px rgba(16,53,47,.18); z-index:20; }
+    .drawer-panel{ position:absolute; right:0; bottom:calc(100% + 10px); width:min(380px, calc(100vw - 32px)); padding:14px; border-radius:20px; border:1px solid var(--line); background:#fff; box-shadow:0 22px 70px rgba(16,53,47,.18); z-index:20; }
     .drawer-panel[hidden]{ display:none; }
     .drawer-title{ margin:0 0 10px; color:var(--muted-dark); font-size:.9rem; }
     .drawer-list{ display:grid; gap:9px; }
     .drawer-link{ display:flex; justify-content:space-between; gap:12px; padding:11px 12px; border:1px solid var(--line); border-radius:14px; background:var(--cream); text-decoration:none; color:var(--ink); font-weight:800; }
+
+    .theme-panel{ width:min(430px, calc(100vw - 32px)); }
+    .theme-list{ max-height:360px; overflow:auto; padding-right:2px; }
+    .theme-option{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 12px; border:1px solid var(--line); border-radius:14px; background:var(--cream); color:var(--ink); font:inherit; font-weight:800; text-align:left; cursor:pointer; }
+    .theme-option:hover{ background:var(--mint-2); }
+    .theme-option[aria-pressed="true"]{ background:var(--forest); color:#fff; border-color:rgba(255,255,255,.18); }
+    .theme-swatch{ display:flex; gap:4px; flex:0 0 auto; }
+    .theme-swatch span{ width:16px; height:16px; border-radius:50%; border:1px solid rgba(0,0,0,.12); background:var(--swatch); }
 
     @media(max-width:980px){
       .utility-bar{ display:none; }
@@ -170,7 +161,6 @@
       .cards,.cards.three,.event-grid,.split-section,.about-wrap{ grid-template-columns:1fr; }
       .about-badge,.field-visual{ min-height:260px; }
     }
-
     @media(max-width:620px){
       .page{ width:min(100% - 18px, var(--max)); padding:9px 0 28px; }
       .site-shell{ border-radius:24px; }
@@ -188,36 +178,48 @@
       .drawer{ position:static; }
       .drawer-panel{ left:10px; right:10px; width:auto; }
     }
-
-    @media(prefers-reduced-motion:reduce){
-      *{ scroll-behavior:auto !important; transition:none !important; }
-    }
-  
-    body,.hero,.utility-bar,.brand-mark,.btn,.quick-icon,.card-icon,.benefit span,.date .month,.date .day,.primary-contact{
-      transition:background-color .35s ease, color .35s ease, border-color .35s ease;
-    }
-
   </style>
 </head>
-
 <body>
   <div class="page">
     <div class="site-shell">
-      <div class="utility-bar" id="utilityBar"></div>
+      <div class="utility-bar">
+        <a href="tel:+19046080347">☎ +1 904-608-0347</a>
+        <span>Quick question? Text me.</span>
+        <a href="jeremy-hart.vcf">Save contact</a>
+      </div>
+
       <header class="hero">
         <nav class="nav" aria-label="Primary navigation">
-          <a class="brand" href="#"><span class="brand-mark" id="brandMark">JH</span><span id="brandName">Jeremy Hart</span></a>
-          <div class="nav-links" id="topNav"></div>
+          <a class="brand" href="#"><span class="brand-mark">JH</span><span>Jeremy Hart</span></a>
+          <div class="nav-links">
+            <a href="#quick-links">Quick Links</a>
+            <a href="#about">About</a>
+            <a href="#stage-door">Stage Door</a>
+            <a href="#connect">Connect</a>
+          </div>
         </nav>
 
         <div class="hero-inner">
           <div>
-            <p class="eyebrow" id="heroEyebrow"></p>
-            <h1 id="heroHeadline"></h1>
-            <p class="hero-copy" id="heroIntro"></p>
-            <div class="hero-actions contact-actions" id="heroActions" aria-label="Quick contact actions"></div>
+            <p class="eyebrow">Jeremy Hart</p>
+            <h1>Quick links, current projects, and a <span class="accent">little about me.</span></h1>
+            <p class="hero-copy">A simple place to find what I’m working on, what I’m involved in, planned activities, field notes, useful links, and the easiest ways to connect.</p>
+            <div class="hero-actions contact-actions" aria-label="Quick contact actions">
+              <a class="btn" href="jeremy-hart.vcf">Save Contact</a>
+              <a class="btn secondary" href="sms:+19046080347">Text</a>
+              <a class="btn secondary" href="mailto:jeremy.allan.hart@gmail.com">Email</a>
+              <a class="btn secondary" href="https://cal.com/jeremy-allan-hart" target="_blank" rel="noopener">Schedule</a>
+            </div>
           </div>
-          <div class="hero-visual" id="heroVisual" aria-label="Featured item"></div>
+
+          <div class="hero-visual" aria-label="Featured item">
+            <a class="visual-card" href="https://www.powerhousenh.org/shrek" target="_blank" rel="noopener">
+              <small>On Stage Next</small>
+              <strong>Shrek The Musical</strong>
+              <p>Aug 7-9, 2026 · The Colonial Theatre · Puppeteer</p>
+            </a>
+          </div>
         </div>
       </header>
 
@@ -227,23 +229,166 @@
           <a href="#quick-links">Quick Links</a>
           <a href="#about">About Me</a>
 <a href="#stage-door">Stage Door</a>
-          <a href="#planned-activities">Planned Activities</a>
           <a href="#field-notes">Field Notes</a>
           <a href="#useful-links">Useful Links</a>
           <a href="#connect">Connect</a>
         </div>
       </div>
 
-      <main id="mainContent"></main>
+      <main>
+        <section class="section compact alt" id="quick-links">
+          <div class="section-head">
+            <small>Quick Links</small>
+            <h2>Find me, message me, or schedule time</h2>
+            <p>Fast contact options first, then the rest of the page gives more context.</p>
+          </div>
+          <div class="quick-grid"><a class="quick-card primary-contact" href="jeremy-hart.vcf">
+      <div class="quick-icon">+</div>
+      <strong>Save my contact</strong>
+      <p>Add my contact card to your phone.</p>
+    </a><a class="quick-card" href="sms:+19046080347">
+      <div class="quick-icon">☎</div>
+      <strong>Text me</strong>
+      <p>Best for quick questions.</p>
+    </a><a class="quick-card" href="mailto:jeremy.allan.hart@gmail.com">
+      <div class="quick-icon">@</div>
+      <strong>Email me</strong>
+      <p>Best for anything that needs context.</p>
+    </a><a class="quick-card" href="https://cal.com/jeremy-allan-hart" target="_blank" rel="noopener">
+      <div class="quick-icon">◷</div>
+      <strong>Schedule time</strong>
+      <p>Use Cal.com to find a time.</p>
+    </a></div>
+        </section>
+
+        <section class="section" id="about">
+          <div class="about-wrap">
+            <div class="about-badge">
+              <strong>Operations · Technology · Theatre · Fitness · Local Projects</strong>
+              <span>Curious by default. Resilient by design.</span>
+            </div>
+            <div>
+              <div class="section-head left">
+                <small>About Me</small>
+                <h2>A little context beyond the links</h2>
+              </div>
+              <div class="about-copy"><p>I like understanding how things work and making them better, whether that’s a project, a process, or something in my own life.</p><p>My background runs through software, operations, HR, finance, local news, theatre, and practical systems.</p><p>Fitness keeps me centered. Theatre keeps me human. “Slow is smooth, smooth is fast” is a reminder I come back to often.</p></div>
+              <div class="benefits"><div class="benefit"><span>✓</span>Systems and operations</div><div class="benefit"><span>✓</span>Theatre and practical builds</div><div class="benefit"><span>✓</span>Fitness and endurance</div><div class="benefit"><span>✓</span>Local projects and community</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="stage-door">
+          <div class="section-head">
+            <small>Stage Door</small>
+            <h2>What’s next on stage</h2>
+            <p>Upcoming shows and theatre projects.</p>
+          </div>
+          <div class="cards">
+            <a class="card show-card" href="https://www.powerhousenh.org/shrek" target="_blank" rel="noopener">
+              <div class="card-icon">🎭</div>
+              <div class="card-top"><strong>Shrek The Musical</strong><span class="tag">Upcoming</span></div>
+              <p>Aug 7-9, 2026 · The Colonial Theatre, 609 Main Street, Laconia NH</p>
+              <p><strong style="font-size:.95rem;">Times:</strong> Fri & Sat 7:30 PM · Sun 2:00 PM</p>
+              <p><strong style="font-size:.95rem;">Role:</strong> Puppeteer</p>
+            </a>
+    
+            
+    
+            <a class="card show-card" href="https://www.powerhousenh.org/starcatcher" target="_blank" rel="noopener">
+              <div class="card-icon">🎭</div>
+              <div class="card-top"><strong>Peter and the Starcatcher</strong><span class="tag">Upcoming</span></div>
+              <p>Oct 9-11, 2026 · The Colonial Theatre, 609 Main Street, Laconia NH</p>
+              <p><strong style="font-size:.95rem;">Times:</strong> Fri & Sat 7:30 PM · Sun 2:00 PM</p>
+              <p><strong style="font-size:.95rem;">Role:</strong> Stage Manager</p>
+            </a>
+    
+          </div>
+        </section>
+
+        <section class="section" id="field-notes">
+          <div class="split-section">
+            <div class="field-visual" aria-hidden="true"></div>
+            <div>
+              <div class="section-head left">
+                <small>Field Notes</small>
+                <h2>Writing, training, reading, and photos</h2>
+                <p>Places where I leave breadcrumbs: thoughts, workouts, books, pictures, and short updates.</p>
+              </div>
+              <div class="benefits"><a class="benefit" href="https://jeremyallanhart.substack.com/" target="_blank" rel="noopener"><span>✓</span>Substack</a><a class="benefit" href="https://www.strava.com/athletes/18895402" target="_blank" rel="noopener"><span>✓</span>Strava</a><a class="benefit" href="https://www.goodreads.com/user/show/12091117-jeremy-hart" target="_blank" rel="noopener"><span>✓</span>Goodreads</a><a class="benefit" href="https://www.instagram.com/jeremyallanhart/" target="_blank" rel="noopener"><span>✓</span>Instagram</a></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section alt" id="useful-links">
+          <div class="section-head">
+            <small>Useful Links</small>
+            <h2>A few places to find me online</h2>
+            <p>Profiles, socials, video, and a few practical links.</p>
+          </div>
+          <div class="cards three"><a class="card" href="https://www.linkedin.com/in/jeremyallanhart/" target="_blank" rel="noopener">
+      <div class="card-icon">in</div>
+      <div class="card-top">
+        <strong>LinkedIn</strong>
+        <span class="tag">Work</span>
+      </div>
+      <p>Professional background and work stuff.</p>
+    </a><a class="card" href="https://www.youtube.com/@jeremyallanhart" target="_blank" rel="noopener">
+      <div class="card-icon">▶</div>
+      <div class="card-top">
+        <strong>YouTube</strong>
+        <span class="tag">Video</span>
+      </div>
+      <p>Videos, experiments, and whatever makes it out of the edit cave.</p>
+    </a><a class="card" href="https://x.com/jeremyhart" target="_blank" rel="noopener">
+      <div class="card-icon">X</div>
+      <div class="card-top">
+        <strong>X</strong>
+        <span class="tag">Updates</span>
+      </div>
+      <p>Short updates and assorted signal flares.</p>
+    </a><a class="card" href="https://www.facebook.com/hart.jeremy" target="_blank" rel="noopener">
+      <div class="card-icon">f</div>
+      <div class="card-top">
+        <strong>Facebook</strong>
+        <span class="tag">Social</span>
+      </div>
+      <p>Facebook profile.</p>
+    </a></div>
+        </section>
+
+        <section class="section" id="connect">
+          <div class="section-head">
+            <small>Connect</small>
+            <h2>Reach me directly</h2>
+            <p>Quick question? Text me. Anything longer, email. Scheduling is here too.</p>
+          </div>
+          <div class="connect-row">
+            <a class="pill" href="tel:+19046080347">Call</a>
+            <a class="pill" href="sms:+19046080347">Text</a>
+            <a class="pill" href="mailto:jeremy.allan.hart@gmail.com">Email</a>
+            <a class="pill" href="https://cal.com/jeremy-allan-hart" target="_blank" rel="noopener">Schedule time</a>
+            <a class="pill" href="jeremy-hart.vcf">Add to contacts</a>
+          </div>
+        </section>
+      </main>
 
       <footer>
-        <span>© <span id="year"></span> <span id="footerName"></span></span>
-        <div class="connect-row" style="justify-content:flex-start;margin:0;">
+        <span>© <span id="year"></span> Jeremy Hart</span>
+        <div class="connect-row footer-tools" style="justify-content:flex-start;margin:0;">
+          <div class="drawer">
+            <button class="pill" id="themeBtn" type="button" aria-expanded="false" aria-controls="themePanel" title="Change theme">◐</button>
+            <div class="drawer-panel theme-panel" id="themePanel" hidden>
+              <p class="drawer-title">Theme</p>
+              <div class="drawer-list theme-list" id="themeDrawer"></div>
+            </div>
+          </div>
+
           <div class="drawer">
             <button class="pill" id="payBtn" type="button" aria-expanded="false" aria-controls="payPanel">$</button>
             <div class="drawer-panel" id="payPanel" hidden>
               <p class="drawer-title">Payment options</p>
-              <div class="drawer-list" id="paymentDrawer"></div>
+              <div class="drawer-list"><a class="drawer-link" href="https://cash.app/$jeremyallanhart" target="_blank" rel="noopener"><strong>Cash App</strong><span>$jeremyallanhart</span></a><a class="drawer-link" href="https://venmo.com/jeremyhart" target="_blank" rel="noopener"><strong>Venmo</strong><span>@jeremyhart</span></a></div>
             </div>
           </div>
         </div>
@@ -252,13 +397,9 @@
   </div>
 
   <script>
-    const fallbackData = null;
+    const themes = {"default": {"name": "Base green", "colors": {"--forest": "#0f4a3d", "--forest-2": "#0a3a31", "--forest-3": "#073028", "--mint": "#b9f36d", "--mint-2": "#e1fac6", "--cream": "#f6f4ed", "--season-bg-start": "#174f45", "--season-bg-end": "#f6f4ed"}}, "months": {"1": {"name": "January winter blue", "colors": {"--forest": "#123a56", "--forest-2": "#0b2b43", "--forest-3": "#061f32", "--mint": "#9edcff", "--mint-2": "#dff4ff", "--cream": "#f3f8fb", "--season-bg-start": "#133b5c", "--season-bg-end": "#f3f8fb"}}, "2": {"name": "February rose", "colors": {"--forest": "#63203a", "--forest-2": "#4b172b", "--forest-3": "#35101f", "--mint": "#ffb7c8", "--mint-2": "#ffe2ea", "--cream": "#fff6f8", "--season-bg-start": "#63203a", "--season-bg-end": "#fff6f8"}}, "3": {"name": "March early spring", "colors": {"--forest": "#214f35", "--forest-2": "#173b28", "--forest-3": "#10291d", "--mint": "#a8e878", "--mint-2": "#e4f8d6", "--cream": "#f5f8ef", "--season-bg-start": "#214f35", "--season-bg-end": "#f5f8ef"}}, "4": {"name": "April pastel", "colors": {"--forest": "#315365", "--forest-2": "#223d4b", "--forest-3": "#172b35", "--mint": "#ffd6eb", "--mint-2": "#e8f4ff", "--cream": "#fff9f2", "--season-bg-start": "#315365", "--season-bg-end": "#fff9f2"}}, "5": {"name": "May fresh green", "colors": {"--forest": "#15533a", "--forest-2": "#0e3d2a", "--forest-3": "#092b1d", "--mint": "#bdf27b", "--mint-2": "#e7fad0", "--cream": "#f6f8ef", "--season-bg-start": "#15533a", "--season-bg-end": "#f6f8ef"}}, "6": {"name": "June lake teal", "colors": {"--forest": "#0e5260", "--forest-2": "#0a3d48", "--forest-3": "#062a32", "--mint": "#95f0d8", "--mint-2": "#dcfff6", "--cream": "#f2fbf8", "--season-bg-start": "#0e5260", "--season-bg-end": "#f2fbf8"}}, "7": {"name": "July summer blue", "colors": {"--forest": "#173f77", "--forest-2": "#102e58", "--forest-3": "#0a203e", "--mint": "#ffd166", "--mint-2": "#fff1c7", "--cream": "#f8fbff", "--season-bg-start": "#173f77", "--season-bg-end": "#f8fbff"}}, "8": {"name": "August golden green", "colors": {"--forest": "#35512b", "--forest-2": "#263d1f", "--forest-3": "#1a2b15", "--mint": "#f1c85b", "--mint-2": "#fff0bc", "--cream": "#fbf7ea", "--season-bg-start": "#35512b", "--season-bg-end": "#fbf7ea"}}, "9": {"name": "September harvest", "colors": {"--forest": "#5b3b1d", "--forest-2": "#442b15", "--forest-3": "#2f1e0f", "--mint": "#f0b24d", "--mint-2": "#ffe4b8", "--cream": "#faf3e8", "--season-bg-start": "#5b3b1d", "--season-bg-end": "#faf3e8"}}, "10": {"name": "October fall", "colors": {"--forest": "#3a2a22", "--forest-2": "#261b16", "--forest-3": "#17100d", "--mint": "#ff8a3d", "--mint-2": "#ffe0c7", "--cream": "#fbf2ea", "--season-bg-start": "#3a2a22", "--season-bg-end": "#fbf2ea"}}, "11": {"name": "November cranberry", "colors": {"--forest": "#4a2525", "--forest-2": "#351a1a", "--forest-3": "#241111", "--mint": "#d9a441", "--mint-2": "#f7e3b8", "--cream": "#f8f1e8", "--season-bg-start": "#4a2525", "--season-bg-end": "#f8f1e8"}}, "12": {"name": "December winter blue", "colors": {"--forest": "#11385f", "--forest-2": "#0b2946", "--forest-3": "#071d32", "--mint": "#b8e4ff", "--mint-2": "#e4f5ff", "--cream": "#f3f8fc", "--season-bg-start": "#11385f", "--season-bg-end": "#f3f8fc"}}}, "holidays": [{"name": "Valentine's Day", "start": "02-08", "end": "02-15", "colors": {"--forest": "#7a1934", "--forest-2": "#561024", "--forest-3": "#370915", "--mint": "#ffb3c7", "--mint-2": "#ffe3eb", "--cream": "#fff7fa", "--season-bg-start": "#7a1934", "--season-bg-end": "#fff7fa"}}, {"name": "Easter", "start": "03-25", "end": "04-07", "colors": {"--forest": "#4b5f7a", "--forest-2": "#35445c", "--forest-3": "#222d3e", "--mint": "#f7c7e3", "--mint-2": "#dff4ff", "--cream": "#fffaf0", "--season-bg-start": "#4b5f7a", "--season-bg-end": "#fffaf0"}}, {"name": "Fourth of July", "start": "06-28", "end": "07-06", "colors": {"--forest": "#153b75", "--forest-2": "#0f2c57", "--forest-3": "#091d3a", "--mint": "#e63946", "--mint-2": "#ffffff", "--cream": "#f8fbff", "--season-bg-start": "#153b75", "--season-bg-end": "#f8fbff"}}, {"name": "Halloween", "start": "10-24", "end": "10-31", "colors": {"--forest": "#1c1714", "--forest-2": "#100d0b", "--forest-3": "#080605", "--mint": "#ff7a1a", "--mint-2": "#ffe0c0", "--cream": "#fbf1e7", "--season-bg-start": "#1c1714", "--season-bg-end": "#fbf1e7"}}, {"name": "Christmas", "start": "12-18", "end": "12-26", "colors": {"--forest": "#0f4a3d", "--forest-2": "#0a332b", "--forest-3": "#061f1a", "--mint": "#d72638", "--mint-2": "#fff3f4", "--cream": "#f8fbf6", "--season-bg-start": "#0f4a3d", "--season-bg-end": "#f8fbf6"}}, {"name": "New Year", "start": "12-27", "end": "01-03", "colors": {"--forest": "#12192f", "--forest-2": "#0b1020", "--forest-3": "#060914", "--mint": "#d6b75c", "--mint-2": "#f8edc8", "--cream": "#f6f7fb", "--season-bg-start": "#12192f", "--season-bg-end": "#f6f7fb"}}]};
 
-    const externalAttrs = item => item.external ? ' target="_blank" rel="noopener"' : '';
-    const linkTag = (item, cls, inner) => item.url
-      ? `<a class="${cls}" href="${item.url}"${externalAttrs(item)}>${inner}</a>`
-      : `<div class="${cls}">${inner}</div>`;
-
+    document.getElementById("year").textContent = new Date().getFullYear();
 
     function parseMonthDay(value){
       const [month, day] = value.split("-").map(Number);
@@ -280,280 +421,105 @@
       if(startValue <= endValue){
         return now >= startValue && now <= endValue;
       }
-
       return now >= startValue || now <= endValue;
     }
 
-    function findSeasonalPalette(themes){
-      const today = new Date();
-
-      const holidays = themes.holidays || [];
-      for(const theme of holidays){
-        if(isInMonthDayRange(today, theme.start, theme.end)){
-          return theme;
-        }
+    function findSeasonalPalette(){
+      for(const theme of themes.holidays || []){
+        if(isInMonthDayRange(new Date(), theme.start, theme.end)) return theme;
       }
+      return (themes.months || {})[String(new Date().getMonth() + 1)] || themes.default;
+    }
 
-      const month = String(today.getMonth() + 1);
-      return (themes.months || {})[month] || themes.default || null;
+    function collectThemeOptions(){
+      const options = [];
+      if(themes.default) options.push({ key:"default", label:themes.default.name || "Base green", palette:themes.default });
+      Object.entries(themes.months || {}).forEach(([month, palette]) => {
+        options.push({ key:`month-${month}`, label:palette.name || `Month ${month}`, palette });
+      });
+      (themes.holidays || []).forEach((palette, index) => {
+        options.push({ key:`holiday-${index}`, label:palette.name || `Holiday ${index + 1}`, palette });
+      });
+      return options;
+    }
+
+    function getThemeOverride(){
+      return localStorage.getItem("onDeckThemeOverride") || "auto";
+    }
+
+    function setThemeOverride(value){
+      localStorage.setItem("onDeckThemeOverride", value);
     }
 
     function applyPalette(palette){
       if(!palette || !palette.colors) return;
-      const root = document.documentElement;
       Object.entries(palette.colors).forEach(([key, value]) => {
-        root.style.setProperty(key, value);
+        document.documentElement.style.setProperty(key, value);
       });
+    }
 
-      if(palette.name){
-        document.documentElement.setAttribute("data-season-theme", palette.name);
+    function applyTheme(){
+      const override = getThemeOverride();
+      if(override !== "auto"){
+        const option = collectThemeOptions().find(o => o.key === override);
+        if(option) {
+          applyPalette(option.palette);
+          return;
+        }
       }
+      applyPalette(findSeasonalPalette());
     }
 
-    function applySeasonalTheme(themes){
-      applyPalette(findSeasonalPalette(themes));
-    }
+    function renderThemeDrawer(){
+      const current = getThemeOverride();
+      const options = [{ key:"auto", label:"Auto seasonal", palette:findSeasonalPalette() }, ...collectThemeOptions()];
+      document.getElementById("themeDrawer").innerHTML = options.map(option => {
+        const colors = option.palette?.colors || {};
+        const swatches = [
+          colors["--forest"] || "#0f4a3d",
+          colors["--mint"] || "#b9f36d",
+          colors["--cream"] || "#f6f4ed"
+        ];
+        return `<button class="theme-option" type="button" data-theme-key="${option.key}" aria-pressed="${current === option.key}">
+          <span>${option.label}</span>
+          <span class="theme-swatch" aria-hidden="true">
+            ${swatches.map(color => `<span style="--swatch:${color}"></span>`).join("")}
+          </span>
+        </button>`;
+      }).join("");
 
-
-
-
-    function visibleItems(items){
-      return Array.isArray(items) ? items.filter(item => item.active !== false) : [];
-    }
-
-    function hasItems(value){
-      return Array.isArray(value) && value.length > 0;
-    }
-
-    function navItem(id, label, shouldShow){
-      return shouldShow ? `<a href="#${id}">${label}</a>` : "";
-    }
-
-    function escapeHtml(value){
-      return String(value ?? "").replace(/[&<>"']/g, char => ({
-        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-      }[char]));
-    }
-
-    function renderCard(item){
-      const inner = `
-        <div class="card-icon">${escapeHtml(item.icon || "•")}</div>
-        <div class="card-top">
-          <strong>${escapeHtml(item.title)}</strong>
-          ${item.tag ? `<span class="tag">${escapeHtml(item.tag)}</span>` : ""}
-        </div>
-        <p>${escapeHtml(item.description)}</p>`;
-      return linkTag(item, "card", inner);
-    }
-
-    function renderQuickLink(item){
-      const inner = `
-        <div class="quick-icon">${escapeHtml(item.icon || "•")}</div>
-        <strong>${escapeHtml(item.title)}</strong>
-        <p>${escapeHtml(item.description)}</p>`;
-      return linkTag(item, `quick-card${item.primary ? " primary-contact" : ""}`, inner);
-    }
-
-    function renderEvent(item){
-      const inner = `
-        <div class="date"><span class="month">${escapeHtml(item.month)}</span><span class="day">${escapeHtml(item.day)}</span></div>
-        <div>
-          <strong>${escapeHtml(item.title)}</strong>
-          <p>${escapeHtml(item.details)}</p>
-          <p>${escapeHtml(item.note)}</p>
-          <div class="event-tags">${(item.tags || []).map(tag => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
-        </div>`;
-      return linkTag(item, "event", inner);
-    }
-
-    function renderSite(data){
-      const p = data.profile;
-
-      document.title = `${p.name}`;
-      document.getElementById("brandMark").textContent = p.initials;
-      document.getElementById("brandName").textContent = p.name;
-      document.getElementById("footerName").textContent = p.name;
-      document.getElementById("year").textContent = new Date().getFullYear();
-      applySeasonalTheme(data.themes || {});
-
-      document.getElementById("utilityBar").innerHTML = `
-        <a href="tel:${p.phoneHref}">☎ ${escapeHtml(p.phoneDisplay)}</a>
-        <span>Quick question? Text me.</span>
-        <a href="${p.contactCard}">Save contact</a>`;
-
-      document.getElementById("heroEyebrow").textContent = p.eyebrow;
-      const headline = escapeHtml(p.headline).replace("little about me.", `<span class="accent">little about me.</span>`);
-      document.getElementById("heroHeadline").innerHTML = headline;
-      document.getElementById("heroIntro").textContent = p.intro;
-
-      document.getElementById("heroActions").innerHTML = `
-        <a class="btn" href="${p.contactCard}">Save Contact</a>
-        <a class="btn secondary" href="sms:${p.phoneHref}">Text</a>
-        <a class="btn secondary" href="mailto:${p.email}">Email</a>
-        <a class="btn secondary" href="${p.scheduleUrl}" target="_blank" rel="noopener">Schedule</a>`;
-
-
-      const stageShows = visibleItems(data.stageDoor?.onStage?.shows);
-      const showStageDoor = hasItems(stageShows);
-      const showPlannedActivities = hasItems(data.plannedActivities?.items);
-      const showFieldNotes = hasItems(data.fieldNotes?.links);
-      const showUsefulLinks = hasItems(data.usefulLinks?.links);
-
-      document.getElementById("topNav").innerHTML = [
-        navItem("quick-links", "Quick Links", hasItems(data.quickLinks)),
-        navItem("about", "About", true),
-        navItem("stage-door", "Stage Door", showStageDoor),
-        navItem("connect", "Connect", true)
-      ].join("");
-
-      document.getElementById("sectionNav").innerHTML = [
-        navItem("quick-links", "Quick Links", hasItems(data.quickLinks)),
-        navItem("about", "About Me", true),
-        navItem("stage-door", "Stage Door", showStageDoor),
-        navItem("planned-activities", "Planned Activities", showPlannedActivities),
-        navItem("field-notes", "Field Notes", showFieldNotes),
-        navItem("useful-links", "Useful Links", showUsefulLinks),
-        navItem("connect", "Connect", true)
-      ].join("");
-
-
-      document.getElementById("heroVisual").innerHTML = `
-        <a class="visual-card" href="${data.featured.url}" target="_blank" rel="noopener">
-          <small>${escapeHtml(data.featured.label)}</small>
-          <strong>${escapeHtml(data.featured.title)}</strong>
-          <p>${escapeHtml(data.featured.description)}</p>
-        </a>`;
-
-      const main = document.getElementById("mainContent");
-      main.innerHTML = `
-        ${hasItems(data.quickLinks) ? `
-        <section class="section compact alt" id="quick-links">
-          <div class="section-head">
-            <small>Quick Links</small>
-            <h2>Find me, message me, or schedule time</h2>
-            <p>Fast contact options first, then the rest of the page gives more context.</p>
-          </div>
-          <div class="quick-grid">${data.quickLinks.map(renderQuickLink).join("")}</div>
-        </section>` : ""}
-
-        <section class="section" id="about">
-          <div class="about-wrap">
-            <div class="about-badge">
-              <strong>${escapeHtml(p.aboutBadge)}</strong>
-              <span>${escapeHtml(p.aboutTagline)}</span>
-            </div>
-            <div>
-              <div class="section-head left">
-                <small>${escapeHtml(p.aboutLabel)}</small>
-                <h2>${escapeHtml(p.aboutHeading)}</h2>
-              </div>
-              <div class="about-copy">${p.aboutParagraphs.map(text => `<p>${escapeHtml(text)}</p>`).join("")}</div>
-              <div class="benefits">${p.aboutBullets.map(text => `<div class="benefit"><span>✓</span>${escapeHtml(text)}</div>`).join("")}</div>
-            </div>
-          </div>
-        </section>
-
-        ${showStageDoor ? `
-        <section class="section" id="stage-door">
-          <div class="section-head">
-            <small>${escapeHtml(data.stageDoor.label)}</small>
-            <h2>${escapeHtml(data.stageDoor.onStage.heading)}</h2>
-            <p>${escapeHtml(data.stageDoor.onStage.description)}</p>
-          </div>
-          <div class="cards">
-            ${stageShows.map(show => linkTag({
-              url: show.url,
-              external: true
-            }, "card show-card", `
-              <div class="card-icon">🎭</div>
-              <div class="card-top"><strong>${escapeHtml(show.title)}</strong><span class="tag">${escapeHtml(show.status)}</span></div>
-              <p>${escapeHtml(show.date)} · ${escapeHtml(show.location)}</p>
-              ${show.times ? `<p><strong style="font-size:.95rem;">Times:</strong> ${escapeHtml(show.times)}</p>` : ""}
-              <p><strong style="font-size:.95rem;">Role:</strong> ${escapeHtml(show.role)}</p>
-            `)).join("")}
-          </div>
-        </section>` : ""}
-
-        ${showPlannedActivities ? `
-        <section class="section alt" id="planned-activities">
-          <div class="section-head">
-            <small>${escapeHtml(data.plannedActivities.label)}</small>
-            <h2>${escapeHtml(data.plannedActivities.heading)}</h2>
-            <p>${escapeHtml(data.plannedActivities.description)}</p>
-          </div>
-          <div class="event-grid">${data.plannedActivities.items.map(renderEvent).join("")}</div>
-        </section>` : ""}
-
-        ${showFieldNotes ? `
-        <section class="section" id="field-notes">
-          <div class="split-section">
-            <div class="field-visual" aria-hidden="true"></div>
-            <div>
-              <div class="section-head left">
-                <small>${escapeHtml(data.fieldNotes.label)}</small>
-                <h2>${escapeHtml(data.fieldNotes.heading)}</h2>
-                <p>${escapeHtml(data.fieldNotes.description)}</p>
-              </div>
-              <div class="benefits">${data.fieldNotes.links.map(link => `<a class="benefit" href="${link.url}" target="_blank" rel="noopener"><span>✓</span>${escapeHtml(link.title)}</a>`).join("")}</div>
-            </div>
-          </div>
-        </section>` : ""}
-
-        ${showUsefulLinks ? `
-        <section class="section alt" id="useful-links">
-          <div class="section-head">
-            <small>${escapeHtml(data.usefulLinks.label)}</small>
-            <h2>${escapeHtml(data.usefulLinks.heading)}</h2>
-            <p>${escapeHtml(data.usefulLinks.description)}</p>
-          </div>
-          <div class="cards three">${data.usefulLinks.links.map(item => renderCard({...item, external:true})).join("")}</div>
-        </section>` : ""}
-
-        <section class="section" id="connect">
-          <div class="section-head">
-            <small>Connect</small>
-            <h2>Reach me directly</h2>
-            <p>Quick question? Text me. Anything longer, email. Scheduling is here too.</p>
-          </div>
-          <div class="connect-row">
-            <a class="pill" href="tel:${p.phoneHref}">Call</a>
-            <a class="pill" href="sms:${p.phoneHref}">Text</a>
-            <a class="pill" href="mailto:${p.email}">Email</a>
-            <a class="pill" href="${p.scheduleUrl}" target="_blank" rel="noopener">Schedule time</a>
-            <a class="pill" href="${p.contactCard}">Add to contacts</a>
-          </div>
-        </section>
-      `;
-
-      document.getElementById("paymentDrawer").innerHTML = data.payments.map(item => `
-        <a class="drawer-link" href="${item.url}" target="_blank" rel="noopener">
-          <strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.description)}</span>
-        </a>`).join("");
-
-      const payBtn = document.getElementById("payBtn");
-      const payPanel = document.getElementById("payPanel");
-      function closePay(){ payBtn.setAttribute("aria-expanded","false"); payPanel.hidden = true; }
-      function openPay(){ payBtn.setAttribute("aria-expanded","true"); payPanel.hidden = false; }
-      payBtn.addEventListener("click", event => { event.stopPropagation(); payPanel.hidden ? openPay() : closePay(); });
-      payPanel.addEventListener("click", event => event.stopPropagation());
-      document.addEventListener("click", closePay);
-      document.addEventListener("keydown", event => { if(event.key === "Escape") closePay(); });
-    }
-
-    fetch("data.json")
-      .then(response => {
-        if(!response.ok) throw new Error("Could not load data.json");
-        return response.json();
-      })
-      .then(renderSite)
-      .catch(error => {
-        document.body.innerHTML = `<main style="font-family:system-ui;padding:32px;max-width:720px;margin:auto;">
-          <h1>Could not load data.json</h1>
-          <p>This version uses a separate data.json file. If you opened index.html directly from your computer, run it through a local server or upload both files to GitHub Pages.</p>
-          <p><code>python3 -m http.server</code></p>
-        </main>`;
-        console.error(error);
+      document.querySelectorAll(".theme-option").forEach(button => {
+        button.addEventListener("click", () => {
+          setThemeOverride(button.dataset.themeKey);
+          applyTheme();
+          renderThemeDrawer();
+        });
       });
+    }
+
+    applyTheme();
+    renderThemeDrawer();
+
+    const payBtn = document.getElementById("payBtn");
+    const payPanel = document.getElementById("payPanel");
+    const themeBtn = document.getElementById("themeBtn");
+    const themePanel = document.getElementById("themePanel");
+
+    function closePay(){ payBtn.setAttribute("aria-expanded","false"); payPanel.hidden = true; }
+    function openPay(){ closeTheme(); payBtn.setAttribute("aria-expanded","true"); payPanel.hidden = false; }
+    function closeTheme(){ themeBtn.setAttribute("aria-expanded","false"); themePanel.hidden = true; }
+    function openTheme(){ closePay(); themeBtn.setAttribute("aria-expanded","true"); themePanel.hidden = false; }
+
+    payBtn.addEventListener("click", event => { event.stopPropagation(); payPanel.hidden ? openPay() : closePay(); });
+    themeBtn.addEventListener("click", event => { event.stopPropagation(); themePanel.hidden ? openTheme() : closeTheme(); });
+
+    payPanel.addEventListener("click", event => event.stopPropagation());
+    themePanel.addEventListener("click", event => event.stopPropagation());
+
+    document.addEventListener("click", () => { closePay(); closeTheme(); });
+    document.addEventListener("keydown", event => {
+      if(event.key === "Escape"){ closePay(); closeTheme(); }
+    });
   </script>
 </body>
 </html>
