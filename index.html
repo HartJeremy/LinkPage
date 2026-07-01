@@ -4,722 +4,246 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-
   <title>Jeremy Hart</title>
-  <meta name="description" content="Personal link page for Jeremy Hart" />
+  <meta name="description" content="Quick links, current projects, and a little about Jeremy Hart." />
 
   <style>
     :root{
-      /* Font stacks (no external downloads) */
-      --font-sans: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      --font-serif: ui-serif, "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New",monospace;
-      --font-rounded: ui-rounded, system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-
-      --font: var(--font-sans);
-
-      --bg:#0b0c10;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.10);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.72);
-      --muted2:rgba(255,255,255,.55);
-      --border:rgba(255,255,255,.14);
-
-      --accent:#7dd3fc;
-      --glow1: rgba(125,211,252,.18);
-      --glow2: rgba(167,139,250,.14);
-
-      --shadow:0 18px 60px rgba(0,0,0,.45);
-      --r1:18px;
-      --r2:14px;
-      --max:760px;
+      --forest:#0f4a3d; --forest-2:#0a3a31; --forest-3:#073028;
+      --mint:#b9f36d; --mint-2:#e1fac6; --cream:#f6f4ed; --paper:#ffffff;
+      --season-bg-start:#174f45; --season-bg-end:#f6f4ed;
+      --ink:#10352f; --text:#f7fff8; --muted:rgba(255,255,255,.74);
+      --muted-dark:rgba(16,53,47,.68); --line:rgba(16,53,47,.13);
+      --shadow:0 30px 90px rgba(0,0,0,.28); --shadow-soft:0 18px 50px rgba(16,53,47,.14);
+      --radius-xl:34px; --max:1120px;
+      --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      --serif:ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
     }
-
-    /* Themes */
-    [data-theme="modern"]{
-      --font: var(--font-sans);
-      --bg:#0b0c10;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.10);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.72);
-      --muted2:rgba(255,255,255,.55);
-      --border:rgba(255,255,255,.14);
-      --accent:#7dd3fc;
-      --glow1: rgba(125,211,252,.18);
-      --glow2: rgba(167,139,250,.14);
-    }
-    [data-theme="arcade"]{
-      --font: var(--font-mono);
-      --bg:#070510;
-      --panel:rgba(255,255,255,.07);
-      --panel2:rgba(255,255,255,.13);
-      --text:rgba(255,255,255,.93);
-      --muted:rgba(255,255,255,.74);
-      --muted2:rgba(255,255,255,.58);
-      --border:rgba(255,255,255,.16);
-      --accent:#a78bfa;
-      --glow1: rgba(167,139,250,.24);
-      --glow2: rgba(34,211,238,.12);
-    }
-    [data-theme="seventies"]{
-      --font: var(--font-serif);
-      --bg:#0e0b06;
-      --panel:rgba(255,255,255,.07);
-      --panel2:rgba(255,255,255,.13);
-      --text:rgba(255,255,255,.93);
-      --muted:rgba(255,255,255,.75);
-      --muted2:rgba(255,255,255,.60);
-      --border:rgba(255,255,255,.16);
-      --accent:#fbbf24;
-      --glow1: rgba(251,191,36,.22);
-      --glow2: rgba(244,114,182,.10);
-    }
-    [data-theme="eighties"]{
-      --font: var(--font-rounded);
-      --bg:#05040a;
-      --panel:rgba(255,255,255,.07);
-      --panel2:rgba(255,255,255,.13);
-      --text:rgba(255,255,255,.93);
-      --muted:rgba(255,255,255,.74);
-      --muted2:rgba(255,255,255,.58);
-      --border:rgba(255,255,255,.16);
-      --accent:#fb7185;
-      --glow1: rgba(251,113,133,.24);
-      --glow2: rgba(34,211,238,.12);
-    }
-    [data-theme="nineties"]{
-      --font: var(--font-sans);
-      --bg:#070a0b;
-      --panel:rgba(255,255,255,.07);
-      --panel2:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.93);
-      --muted:rgba(255,255,255,.74);
-      --muted2:rgba(255,255,255,.58);
-      --border:rgba(255,255,255,.16);
-      --accent:#34d399;
-      --glow1: rgba(52,211,153,.22);
-      --glow2: rgba(125,211,252,.10);
-    }
-
-    /* Seasonal + holiday */
-    [data-theme="winter"]{ --font:var(--font-sans); --bg:#070c12; --accent:#7dd3fc; --glow1:rgba(125,211,252,.24); --glow2:rgba(148,163,184,.12); }
-    [data-theme="spring"]{ --font:var(--font-sans); --bg:#06100c; --accent:#34d399; --glow1:rgba(52,211,153,.24); --glow2:rgba(125,211,252,.10); }
-    [data-theme="summer"]{ --font:var(--font-sans); --bg:#041015; --accent:#22d3ee; --glow1:rgba(34,211,238,.24); --glow2:rgba(251,191,36,.10); }
-    [data-theme="fall"]{ --font:var(--font-serif); --bg:#120b06; --accent:#f59e0b; --glow1:rgba(245,158,11,.24); --glow2:rgba(251,113,133,.08); }
-    [data-theme="halloween"]{ --font:var(--font-mono); --bg:#100612; --accent:#fb923c; --glow1:rgba(251,146,60,.26); --glow2:rgba(167,139,250,.14); }
-    [data-theme="holiday"]{ --font:var(--font-sans); --bg:#08100b; --accent:#f87171; --glow1:rgba(248,113,113,.24); --glow2:rgba(52,211,153,.12); }
 
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
-      margin:0;
-      font-family:var(--font);
-      color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 20% -10%, var(--glow1), transparent 55%),
-        radial-gradient(900px 600px at 110% 10%, var(--glow2), transparent 55%),
-        var(--bg);
-      line-height:1.35;
+      margin:0; font-family:var(--sans); color:var(--ink);
+      background:radial-gradient(700px 420px at 8% 0%, rgba(185,243,109,.24), transparent 62%),
+                 linear-gradient(180deg, var(--season-bg-start) 0 360px, var(--season-bg-end) 360px);
+      line-height:1.45;
     }
     a{ color:inherit; }
-    a:focus-visible{ outline:3px solid var(--accent); outline-offset:4px; border-radius:12px; }
+    a:focus-visible, button:focus-visible{ outline:3px solid var(--mint); outline-offset:4px; border-radius:14px; }
 
-    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 16px 48px; }
-    .card{
-      border:1px solid var(--border);
-      border-radius:var(--r1);
-      background:linear-gradient(180deg, var(--panel2), var(--panel));
-      box-shadow:var(--shadow);
-      overflow:hidden;
+    .page{ width:min(var(--max), calc(100% - 30px)); margin:0 auto; padding:36px 0 56px; }
+    .site-shell{ border-radius:var(--radius-xl); background:var(--paper); box-shadow:var(--shadow); overflow:hidden; border:1px solid rgba(255,255,255,.24); }
+
+    .utility-bar{
+      min-height:30px; padding:6px 34px; background:var(--mint); color:var(--forest-3);
+      display:flex; align-items:center; justify-content:center; gap:28px; font-size:.82rem; font-weight:780;
     }
+    .utility-bar a{ text-decoration:none; }
 
-    header{ padding:22px 20px 16px; border-bottom:1px solid var(--border); }
-
-    .headerTop{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
+    .hero{
+      position:relative; color:var(--text); overflow:hidden;
+      background:radial-gradient(560px 300px at 78% 20%, rgba(185,243,109,.16), transparent 64%),
+                 radial-gradient(600px 360px at 20% 10%, rgba(255,255,255,.05), transparent 58%),
+                 var(--forest);
     }
-    .headText{ min-width:0; }
-
-    h1{ margin:0 0 6px; font-size:2rem; }
-    .location{ margin:0 0 12px; color:var(--muted); }
-    .about{ margin:0; color:var(--muted); }
-
-    .avatar{
-      width:96px;
-      height:96px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.04);
-      object-fit: cover;
-      object-position: 50% 0%;
-      flex: 0 0 auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,.30);
-    }
-    @media (max-width: 420px){
-      .avatar{ width:74px; height:74px; border-radius:16px; }
+    .hero::before{
+      content:""; position:absolute; inset:0; pointer-events:none; opacity:.12;
+      background:linear-gradient(135deg, transparent 0 44%, rgba(255,255,255,.20) 45%, transparent 46%),
+                 linear-gradient(155deg, transparent 0 56%, rgba(255,255,255,.16) 57%, transparent 58%);
     }
 
-    .meta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      margin-top:12px;
+    .nav{ position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; gap:20px; padding:22px 42px 16px; }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:900; letter-spacing:-.03em; }
+    .brand-mark{ width:35px; height:35px; border-radius:50%; display:grid; place-items:center; background:var(--mint); color:var(--forest-3); font-weight:950; letter-spacing:-.08em; }
+    .nav-links{ display:flex; align-items:center; gap:5px; flex-wrap:wrap; justify-content:flex-end; }
+    .nav-links a{ color:rgba(255,255,255,.86); text-decoration:none; font-size:.9rem; font-weight:750; padding:9px 10px; border-radius:999px; }
+    .nav-links a:hover{ background:rgba(255,255,255,.09); color:#fff; }
+
+    .hero-inner{ position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,420px); gap:48px; padding:46px 42px 56px; align-items:center; }
+    .eyebrow{ margin:0 0 14px; color:var(--mint); text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:950; }
+    h1{ margin:0; max-width:720px; font-size:clamp(2.85rem, 6.7vw, 5.45rem); line-height:.96; letter-spacing:-.065em; }
+    h1 .accent{ color:var(--mint); position:relative; display:inline-block; }
+    h1 .accent::after{ content:""; position:absolute; left:6px; right:-14px; bottom:4px; height:12px; border:2px solid var(--mint); border-color:transparent transparent var(--mint) transparent; border-radius:50%; transform:rotate(-2deg); opacity:.9; }
+    .hero-copy{ margin:20px 0 0; max-width:610px; color:var(--muted); font-size:1.04rem; }
+    .hero-actions{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:28px; }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; min-height:46px; min-width:116px; padding:12px 17px; border-radius:12px; border:1px solid transparent; background:var(--mint); color:var(--forest-3); text-decoration:none; font-weight:850; cursor:pointer; }
+    .btn.secondary{ background:transparent; color:#fff; border-color:rgba(255,255,255,.23); }
+    .btn:hover{ filter:brightness(1.02); transform:translateY(-1px); }
+
+    .hero-visual{
+      position:relative; min-height:360px; border-radius:26px;
+      background:radial-gradient(circle at 60% 16%, var(--mint-2), rgba(185,243,109,.55) 32%, rgba(255,255,255,.12) 33%, rgba(255,255,255,.05) 70%),
+                 linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.26); box-shadow:0 30px 60px rgba(0,0,0,.22);
+      overflow:hidden; display:grid; place-items:center; padding:28px;
+    }
+    .hero-visual::before{ content:""; position:absolute; right:-16px; top:30px; color:rgba(15,74,61,.12); font-family:var(--serif); font-size:5rem; line-height:.8; letter-spacing:-.08em; font-weight:900; }
+    .visual-card{ position:relative; z-index:1; width:100%; max-width:300px; padding:22px; border-radius:24px; background:rgba(255,255,255,.85); color:var(--ink); box-shadow:0 24px 50px rgba(0,0,0,.16); border:1px solid rgba(16,53,47,.10); backdrop-filter:blur(12px); text-decoration:none; }
+    .visual-card small{ color:var(--forest); text-transform:uppercase; letter-spacing:.13em; font-size:.74rem; font-weight:950; }
+    .visual-card strong{ display:block; margin-top:10px; font-size:1.6rem; line-height:1.08; letter-spacing:-.03em; }
+    .visual-card p{ margin:10px 0 0; color:var(--muted-dark); }
+
+    .client-strip{ padding:30px 42px; border-bottom:1px solid var(--line); background:#fff; text-align:center; }
+    .client-strip p{ margin:0 0 18px; color:var(--muted-dark); font-weight:760; font-size:.94rem; }
+    .mini-nav{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+    .mini-nav a{ text-decoration:none; color:rgba(16,53,47,.42); font-weight:900; font-size:1.05rem; }
+    .mini-nav a:hover{ color:var(--forest); }
+
+    .section{ padding:68px 42px; background:var(--paper); }
+    .section.alt{ background:var(--cream); }
+    .section.compact{ padding-top:46px; padding-bottom:46px; }
+    .section-head{ max-width:680px; margin:0 auto 32px; text-align:center; }
+    .section-head.left{ text-align:left; margin-left:0; margin-right:0; }
+    .section-head small, .subsection-head small{ color:var(--forest); text-transform:uppercase; letter-spacing:.15em; font-weight:950; font-size:.75rem; }
+    .section-head h2{ margin:8px 0 0; font-size:clamp(2rem, 4vw, 3rem); line-height:1.05; letter-spacing:-.05em; color:var(--ink); }
+    .section-head p{ margin:12px 0 0; color:var(--muted-dark); }
+
+    .quick-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .cards{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .cards.three{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .quick-card,.card{ display:block; min-height:100%; padding:20px; border-radius:20px; border:1px solid var(--line); background:#fff; text-decoration:none; box-shadow:var(--shadow-soft); transition:transform .16s ease, box-shadow .16s ease; }
+    a.quick-card:hover,a.card:hover{ transform:translateY(-3px); box-shadow:0 22px 60px rgba(16,53,47,.18); }
+    .quick-icon,.card-icon{ width:38px; height:38px; border-radius:12px; display:grid; place-items:center; background:var(--mint-2); color:var(--forest-3); font-weight:950; margin-bottom:16px; }
+    .quick-card strong,.card strong{ display:block; font-size:1.12rem; line-height:1.15; letter-spacing:-.02em; }
+    .quick-card p,.card p{ margin:10px 0 0; color:var(--muted-dark); font-size:.95rem; }
+    .primary-contact{ background:var(--forest); color:#fff; border-color:rgba(255,255,255,.18); }
+    .primary-contact .quick-icon{ background:var(--mint); color:var(--forest-3); }
+    .primary-contact p{ color:rgba(255,255,255,.76); }
+    .card-top{ display:flex; justify-content:space-between; gap:14px; align-items:flex-start; }
+    .tag{ flex:0 0 auto; border:1px solid var(--line); border-radius:999px; padding:5px 8px; color:var(--muted-dark); font-size:.75rem; font-weight:850; }
+
+    .about-wrap{ display:grid; grid-template-columns:minmax(260px,.85fr) minmax(0,1.15fr); gap:42px; align-items:center; }
+    .about-badge{ min-height:380px; border-radius:30px; background:radial-gradient(circle at 35% 24%, rgba(185,243,109,.78), transparent 28%), linear-gradient(135deg, var(--forest), var(--forest-3)); position:relative; overflow:hidden; box-shadow:var(--shadow-soft); color:#fff; padding:28px; display:flex; flex-direction:column; justify-content:flex-end; }
+    .about-badge::before{ content:"JH"; position:absolute; left:26px; top:24px; color:rgba(255,255,255,.13); font-size:10rem; line-height:.75; font-family:var(--serif); font-weight:900; letter-spacing:-.08em; }
+    .about-badge strong,.about-badge span{ position:relative; z-index:1; }
+    .about-badge strong{ font-size:1.45rem; line-height:1.12; }
+    .about-badge span{ margin-top:10px; color:rgba(255,255,255,.76); }
+    .about-copy p{ color:var(--muted-dark); margin:0 0 14px; font-size:1.02rem; }
+    .about-copy p:first-of-type{ color:var(--ink); font-weight:760; font-size:1.12rem; }
+    .benefits{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:24px; }
+    .benefit{ color:var(--ink); font-weight:830; text-decoration:none; }
+    .benefit span{ display:inline-grid; place-items:center; width:22px; height:22px; margin-right:8px; border-radius:50%; background:var(--mint); color:var(--forest-3); font-size:.78rem; }
+
+    .subsection-head{ margin:42px 0 18px; padding-top:24px; border-top:1px solid var(--line); text-align:left; }
+    .subsection-head h3{ margin:8px 0 0; color:var(--ink); font-size:clamp(1.45rem, 3vw, 2.1rem); line-height:1.08; letter-spacing:-.04em; }
+    .subsection-head p{ margin:10px 0 0; color:var(--muted-dark); max-width:760px; }
+    .show-card{ display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:16px; align-items:start; }
+    .show-card .card-icon{ margin-bottom:0; }
+    .show-card .card-top,.show-card p{ grid-column:2; }
+
+    .event-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .event{ display:grid; grid-template-columns:86px minmax(0,1fr); gap:14px; padding:18px; border-radius:22px; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow-soft); text-decoration:none; }
+    a.event:hover{ transform:translateY(-3px); box-shadow:0 22px 60px rgba(16,53,47,.18); }
+    .date{ border-radius:18px; overflow:hidden; border:1px solid var(--line); text-align:center; height:max-content; }
+    .date .month{ display:block; padding:7px 4px; background:var(--forest); color:#fff; text-transform:uppercase; letter-spacing:.10em; font-size:.76rem; font-weight:950; }
+    .date .day{ display:block; padding:12px 4px 10px; background:var(--mint-2); color:var(--forest-3); font-size:2rem; line-height:.8; font-weight:950; font-family:var(--serif); }
+    .event strong{ display:block; font-size:1.16rem; line-height:1.15; }
+    .event p{ margin:8px 0 0; color:var(--muted-dark); font-size:.94rem; }
+    .event-tags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; }
+    .event-tags span{ border:1px solid var(--line); border-radius:999px; padding:5px 9px; color:var(--muted-dark); font-weight:850; font-size:.78rem; }
+
+    .split-section{ display:grid; grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr); gap:46px; align-items:center; }
+    .field-visual{ min-height:420px; border-radius:26px; background:radial-gradient(circle at 35% 25%, rgba(185,243,109,.70), transparent 28%), linear-gradient(135deg, var(--forest), var(--forest-3)); position:relative; overflow:hidden; box-shadow:var(--shadow-soft); }
+    .field-visual::before{ content:"NOTES"; position:absolute; left:28px; bottom:24px; color:rgba(255,255,255,.12); font-size:7rem; line-height:.8; font-family:var(--serif); font-weight:900; letter-spacing:-.08em; }
+    .field-visual::after{ content:"Writing · Training · Reading · Photos"; position:absolute; left:28px; right:28px; top:28px; color:#fff; font-weight:850; font-size:1.35rem; line-height:1.2; }
+
+    .connect-row{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:26px; }
+    .pill{ display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:11px 14px; border-radius:999px; border:1px solid var(--line); color:var(--ink); text-decoration:none; background:#fff; font-weight:850; box-shadow:0 12px 30px rgba(16,53,47,.08); cursor:pointer; }
+    .pill:hover{ background:var(--mint-2); }
+
+    footer{ padding:24px 42px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; color:var(--muted-dark); background:#fff; border-top:1px solid var(--line); font-size:.92rem; }
+    .drawer{ position:relative; display:inline-block; }
+    .drawer-panel{ position:absolute; right:0; bottom:calc(100% + 10px); width:min(360px, calc(100vw - 32px)); padding:14px; border-radius:20px; border:1px solid var(--line); background:#fff; box-shadow:0 22px 70px rgba(16,53,47,.18); z-index:20; }
+    .drawer-panel[hidden]{ display:none; }
+    .drawer-title{ margin:0 0 10px; color:var(--muted-dark); font-size:.9rem; }
+    .drawer-list{ display:grid; gap:9px; }
+    .drawer-link{ display:flex; justify-content:space-between; gap:12px; padding:11px 12px; border:1px solid var(--line); border-radius:14px; background:var(--cream); text-decoration:none; color:var(--ink); font-weight:800; }
+
+    @media(max-width:980px){
+      .utility-bar{ display:none; }
+      .nav{ padding:20px 24px 14px; }
+      .nav-links a:nth-child(n+5){ display:none; }
+      .hero-inner{ grid-template-columns:1fr; padding:36px 24px 44px; }
+      .hero-visual{ min-height:290px; }
+      .client-strip,.section,footer{ padding-left:24px; padding-right:24px; }
+      .quick-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .cards,.cards.three,.event-grid,.split-section,.about-wrap{ grid-template-columns:1fr; }
+      .about-badge,.field-visual{ min-height:260px; }
     }
 
-    .toggle{
-      appearance:none;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.05);
-      color:var(--text);
-      padding:8px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:650;
-      min-height:40px;
-      font-family:var(--font);
+    @media(max-width:620px){
+      .page{ width:min(100% - 18px, var(--max)); padding:9px 0 28px; }
+      .site-shell{ border-radius:24px; }
+      .brand span:last-child{ display:none; }
+      .nav-links a:nth-child(n+4){ display:none; }
+      h1{ font-size:3rem; }
+      .contact-actions .btn{ min-width:calc(50% - 5px); }
+      .quick-grid{ grid-template-columns:1fr; }
+      .event{ grid-template-columns:72px minmax(0,1fr); }
+      .benefits{ grid-template-columns:1fr; }
+      .show-card{ display:block; }
+      .show-card .card-icon{ margin-bottom:16px; }
+      footer{ display:block; }
+      footer .connect-row{ justify-content:flex-start; }
+      .drawer{ position:static; }
+      .drawer-panel{ left:10px; right:10px; width:auto; }
     }
 
-    .about-panel{
-      margin-top:12px;
-      padding:14px 14px;
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:rgba(0,0,0,.18);
+    @media(prefers-reduced-motion:reduce){
+      *{ scroll-behavior:auto !important; transition:none !important; }
     }
-    .about-panel .lead{
-      margin:0 0 10px;
-      color:var(--text);
-      font-weight:400;
-    }
-    .about-panel p{
-      margin:10px 0 0;
-      color:var(--muted);
-    }
-    .about-panel p:first-of-type{ margin-top:0; }
-
-    .content{ padding:18px 20px 20px; display:grid; gap:18px; }
-    .section h2{ margin:0 0 10px; font-size:1.12rem; }
-    .section p{ margin:0 0 12px; color:var(--muted); }
-
-    .featured{
-      display:block;
-      padding:14px 14px;
-      border-radius:var(--r2);
-      border:1px solid rgba(255,255,255,.22);
-      background:rgba(255,255,255,.06);
-      text-decoration:none;
-    }
-    .featured strong{ display:block; font-size:1.06rem; }
-    .featured span{ display:block; margin-top:6px; color:var(--muted); }
-    .featured:hover{ border-color:var(--accent); }
-
-    .pillrow{ display:flex; flex-wrap:wrap; gap:10px; }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px 14px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.05);
-      text-decoration:none;
-      min-height:44px;
-      font-weight:650;
-      white-space:nowrap;
-    }
-    .pill:hover{ border-color:rgba(255,255,255,.26); }
-    .pill small{ margin-left:6px; color:var(--muted2); font-weight:600; }
-
-    .grid{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; }
-    @media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
-
-    .link{
-      display:block;
-      padding:14px 14px;
-      border-radius:var(--r2);
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      text-decoration:none;
-      transition:transform .06s ease;
-      min-height:44px;
-    }
-    .link:hover{ border-color:rgba(255,255,255,.26); transform:translateY(-1px); }
-    .top{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-    .tag{
-      font-size:.86rem;
-      color:var(--muted2);
-      border:1px solid rgba(255,255,255,.14);
-      padding:4px 10px;
-      border-radius:999px;
-      white-space:nowrap;
-    }
-    .desc{ margin-top:6px; color:var(--muted); }
-
-    footer{
-      padding:14px 20px;
-      border-top:1px solid var(--border);
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      color:var(--muted2);
-      font-size:.92rem;
-    }
-    .kbdhint kbd{
-      font-family:var(--font-mono);
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.05);
-      padding:2px 8px;
-      border-radius:8px;
-      color:var(--text);
-      font-size:.88rem;
+  
+    body,.hero,.utility-bar,.brand-mark,.btn,.quick-icon,.card-icon,.benefit span,.date .month,.date .day,.primary-contact{
+      transition:background-color .35s ease, color .35s ease, border-color .35s ease;
     }
 
-    .theme-wrap{
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .theme-panel{
-      margin-top:10px;
-      padding:12px;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:rgba(0,0,0,.18);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .theme-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-    }
-    .theme-row + .theme-row{
-      margin-top:10px;
-      padding-top:10px;
-      border-top:1px solid rgba(255,255,255,.10);
-    }
-    .themebtn{
-      appearance:none;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.05);
-      color:var(--text);
-      padding:8px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:650;
-      min-height:40px;
-      font-family:var(--font);
-    }
-    .themebtn[aria-pressed="true"]{ border-color:var(--accent); }
-
-    .pay-panel{
-      margin-top:10px;
-      padding:12px;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:rgba(0,0,0,.18);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      min-width: 260px;
-    }
-    .pay-list{ display:grid; gap:10px; }
-    .pay-item{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.05);
-      text-decoration:none;
-    }
-    .pay-item:hover{ border-color:rgba(255,255,255,.26); }
-    .pay-left{ min-width:0; display:grid; gap:2px; }
-    .pay-title{ font-weight:750; }
-    .pay-desc{ color:var(--muted); font-size:.92rem; }
-    .pay-tag{
-      color:var(--muted2);
-      border:1px solid rgba(255,255,255,.14);
-      padding:4px 10px;
-      border-radius:999px;
-      white-space:nowrap;
-      font-size:.86rem;
-    }
-
-    @media (max-width: 640px){
-      footer{ align-items:flex-start; }
-      .theme-wrap{ width:100%; justify-content:flex-start; }
-      .theme-panel{ width:100%; }
-      .pay-panel{ width:100%; min-width:unset; }
-    }
-
-    body[data-theme="arcade"]::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.06) 0px,
-          rgba(255,255,255,0.06) 1px,
-          rgba(0,0,0,0.12) 2px,
-          rgba(0,0,0,0.12) 4px
-        ),
-        radial-gradient(circle at 50% 45%, rgba(255,255,255,0.06), rgba(0,0,0,0.55) 70%);
-      mix-blend-mode: overlay;
-      opacity: .45;
-    }
-
-    body[data-theme="arcade"]{
-      --bg:#05030c;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.94);
-      --muted:rgba(255,255,255,.78);
-      --muted2:rgba(255,255,255,.62);
-      --border:rgba(167,139,250,.35);
-
-      --accent:#22d3ee;
-      --glow1: rgba(34,211,238,.22);
-      --glow2: rgba(167,139,250,.18);
-
-      --font: var(--font-mono);
-      letter-spacing: .2px;
-    }
-
-    body[data-theme="arcade"] .card{
-      border:1px solid rgba(34,211,238,.35);
-      box-shadow:
-        0 0 0 2px rgba(167,139,250,.25),
-        0 0 32px rgba(34,211,238,.16),
-        0 0 60px rgba(167,139,250,.10),
-        0 18px 60px rgba(0,0,0,.55);
-    }
-
-    body[data-theme="arcade"] header{
-      border-bottom:1px solid rgba(34,211,238,.25);
-    }
-
-    body[data-theme="arcade"] header::after{
-      content:"INSERT COIN";
-      display:inline-block;
-      margin-top:10px;
-      padding:6px 10px;
-      border:1px solid rgba(167,139,250,.35);
-      border-radius:999px;
-      color:rgba(255,255,255,.85);
-      background:rgba(0,0,0,.20);
-      font-size:.84rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: 0 0 18px rgba(34,211,238,.12);
-    }
-
-    body[data-theme="arcade"] .toggle,
-    body[data-theme="arcade"] .pill,
-    body[data-theme="arcade"] .link,
-    body[data-theme="arcade"] .featured,
-    body[data-theme="arcade"] .themebtn,
-    body[data-theme="arcade"] .pay-item{
-      border-color: rgba(34,211,238,.28);
-      background: rgba(0,0,0,.18);
-      box-shadow:
-        0 0 0 2px rgba(167,139,250,.18),
-        0 0 22px rgba(34,211,238,.10);
-    }
-
-    body[data-theme="arcade"] .link:hover,
-    body[data-theme="arcade"] .pill:hover,
-    body[data-theme="arcade"] .featured:hover,
-    body[data-theme="arcade"] .pay-item:hover{
-      border-color: rgba(34,211,238,.55);
-      box-shadow:
-        0 0 0 2px rgba(167,139,250,.25),
-        0 0 30px rgba(34,211,238,.18);
-    }
-
-    body[data-theme="arcade"] .tag,
-    body[data-theme="arcade"] .pay-tag{
-      border-color: rgba(167,139,250,.35);
-      background: rgba(0,0,0,.22);
-      color: rgba(255,255,255,.78);
-      text-transform: uppercase;
-      letter-spacing: .8px;
-    }
-
-    body[data-theme="arcade"] h1,
-    body[data-theme="arcade"] .section h2{
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    body[data-theme="seventies"]{
-      --bg:#0c0703;
-      --accent:#fbbf24;
-      --glow1:rgba(251,191,36,.22);
-      --glow2:rgba(244,114,182,.10);
-      --border:rgba(251,191,36,.18);
-      --font: var(--font-serif);
-    }
-    body[data-theme="seventies"] .card{
-      border-color: rgba(251,191,36,.22);
-      border-radius: 26px;
-      background:
-        radial-gradient(circle at 18% 20%, rgba(251,191,36,.08), transparent 42%),
-        radial-gradient(circle at 80% 30%, rgba(244,114,182,.06), transparent 46%),
-        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-      box-shadow:
-        0 18px 70px rgba(0,0,0,.55),
-        0 0 0 1px rgba(251,191,36,.12);
-    }
-    body[data-theme="seventies"] header{
-      border-bottom:1px dashed rgba(251,191,36,.22);
-    }
-    body[data-theme="seventies"] h1{
-      letter-spacing:.5px;
-    }
-    body[data-theme="seventies"] .toggle,
-    body[data-theme="seventies"] .pill{
-      border-radius:999px;
-      border-color: rgba(251,191,36,.18);
-      background: rgba(0,0,0,.14);
-      box-shadow:
-        0 0 0 1px rgba(244,114,182,.10),
-        0 10px 0 rgba(0,0,0,.18);
-    }
-    body[data-theme="seventies"] .featured,
-    body[data-theme="seventies"] .link{
-      border-radius: 20px;
-      border-color: rgba(251,191,36,.16);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
-      box-shadow: 0 12px 0 rgba(0,0,0,.16);
-    }
-    body[data-theme="seventies"] .tag{
-      border-color: rgba(251,191,36,.18);
-      background: rgba(0,0,0,.18);
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      font-size: .82rem;
-    }
-
-    body[data-theme="eighties"]{
-      --bg:#040313;
-      --accent:#fb7185;
-      --glow1:rgba(251,113,133,.22);
-      --glow2:rgba(34,211,238,.14);
-      --border:rgba(34,211,238,.22);
-      --font: var(--font-rounded);
-    }
-    body[data-theme="eighties"]::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.35;
-      background:
-        linear-gradient(to bottom, rgba(251,113,133,.00) 0%, rgba(251,113,133,.08) 70%, rgba(251,113,133,.18) 100%),
-        repeating-linear-gradient(to right, rgba(34,211,238,.14) 0px, rgba(34,211,238,.14) 1px, rgba(0,0,0,0) 70px),
-        repeating-linear-gradient(to bottom, rgba(34,211,238,.10) 0px, rgba(34,211,238,.10) 1px, rgba(0,0,0,0) 70px);
-      mix-blend-mode: screen;
-    }
-    body[data-theme="eighties"] .card{
-      border-color: rgba(34,211,238,.28);
-      background:
-        radial-gradient(circle at 20% 15%, rgba(251,113,133,.10), transparent 45%),
-        radial-gradient(circle at 90% 10%, rgba(34,211,238,.10), transparent 40%),
-        linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.06));
-      box-shadow:
-        0 0 0 2px rgba(34,211,238,.12),
-        0 0 40px rgba(251,113,133,.14),
-        0 18px 70px rgba(0,0,0,.60);
-    }
-    body[data-theme="eighties"] header{
-      border-bottom:1px solid rgba(34,211,238,.22);
-    }
-    body[data-theme="eighties"] .toggle,
-    body[data-theme="eighties"] .pill,
-    body[data-theme="eighties"] .link,
-    body[data-theme="eighties"] .featured,
-    body[data-theme="eighties"] .themebtn,
-    body[data-theme="eighties"] .pay-item{
-      border-color: rgba(34,211,238,.24);
-      background: rgba(0,0,0,.18);
-      box-shadow:
-        0 0 0 2px rgba(251,113,133,.10),
-        0 0 26px rgba(34,211,238,.10);
-    }
-    body[data-theme="eighties"] .tag,
-    body[data-theme="eighties"] .pay-tag{
-      border-color: rgba(251,113,133,.22);
-      background: rgba(0,0,0,.22);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size:.82rem;
-    }
-
-    body[data-theme="nineties"]{
-      --bg:#050708;
-      --accent:#34d399;
-      --glow1:rgba(52,211,153,.18);
-      --glow2:rgba(125,211,252,.10);
-      --border:rgba(255,255,255,.20);
-      --font: var(--font-sans);
-    }
-    body[data-theme="nineties"] .card{
-      border-radius: 14px;
-      border-color: rgba(255,255,255,.20);
-      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.07));
-      box-shadow:
-        inset 2px 2px 0 rgba(255,255,255,.10),
-        inset -2px -2px 0 rgba(0,0,0,.30),
-        0 18px 60px rgba(0,0,0,.55);
-    }
-    body[data-theme="nineties"] header{
-      border-bottom:2px solid rgba(255,255,255,.16);
-    }
-    body[data-theme="nineties"] .toggle,
-    body[data-theme="nineties"] .pill,
-    body[data-theme="nineties"] .link,
-    body[data-theme="nineties"] .featured,
-    body[data-theme="nineties"] .themebtn,
-    body[data-theme="nineties"] .pay-item{
-      border-radius: 10px;
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      box-shadow:
-        inset 2px 2px 0 rgba(255,255,255,.10),
-        inset -2px -2px 0 rgba(0,0,0,.28);
-    }
-    body[data-theme="nineties"] .link:hover,
-    body[data-theme="nineties"] .pill:hover,
-    body[data-theme="nineties"] .featured:hover,
-    body[data-theme="nineties"] .pay-item:hover{
-      border-color: rgba(52,211,153,.35);
-    }
-    body[data-theme="nineties"] .tag,
-    body[data-theme="nineties"] .pay-tag{
-      border-radius: 8px;
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      box-shadow:
-        inset 1px 1px 0 rgba(255,255,255,.10),
-        inset -1px -1px 0 rgba(0,0,0,.25);
-    }
-    .tagline{
-      margin: 0 0 10px;
-      color: var(--text);
-      opacity: .92;
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
   </style>
 </head>
 
-<body data-theme="modern">
-  <div class="wrap">
-    <div class="card">
-      <header>
-        <div class="headerTop">
-          <div class="headText">
-            <h1 id="name"></h1>
-            <p class="tagline" id="tagline"></p>
-            <p class="location" id="location"></p>
-            <p class="about" id="about"></p>
+<body>
+  <div class="page">
+    <div class="site-shell">
+      <div class="utility-bar" id="utilityBar"></div>
+      <header class="hero">
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="brand" href="#"><span class="brand-mark" id="brandMark">JH</span><span id="brandName">Jeremy Hart</span></a>
+          <div class="nav-links" id="topNav"></div>
+        </nav>
+
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow" id="heroEyebrow"></p>
+            <h1 id="heroHeadline"></h1>
+            <p class="hero-copy" id="heroIntro"></p>
+            <div class="hero-actions contact-actions" id="heroActions" aria-label="Quick contact actions"></div>
           </div>
-
-          <img id="avatar" class="avatar" alt="" loading="eager" decoding="async" />
-        </div>
-
-        <div class="meta-row">
-          <button class="toggle" id="aboutToggle" type="button" aria-expanded="false" aria-controls="about-panel">
-            About
-          </button>
-        </div>
-
-        <div id="about-panel" class="about-panel" hidden>
-          <div class="lead" id="aboutLead"></div>
-          <div id="aboutBody"></div>
+          <div class="hero-visual" id="heroVisual" aria-label="Featured item"></div>
         </div>
       </header>
 
-      <div class="content">
-        <section class="section" id="featuredSection" aria-label="Start here">
-          <a class="featured" id="featuredLink" href="#" target="_blank" rel="noopener">
-            <strong id="featuredTitle"></strong>
-            <span id="featuredDesc"></span>
-          </a>
-        </section>
-
-        <section class="section" id="contact" aria-label="Contact">
-          <h2>Contact</h2>
-          <p id="contactNote"></p>
-
-          <div class="pillrow">
-            <a class="pill" id="callLink" href="#">Call</a>
-            <a class="pill" id="textLink" href="#">Text</a>
-            <a class="pill" id="emailLink" href="#">Email</a>
-            <a class="pill" id="vcfLink" href="#">Add to contacts <small>(VCF)</small></a>
-          </div>
-        </section>
-
-        <section class="section" id="upcomingSection" aria-label="Upcoming shows">
-          <h2>Catch Me On Stage In…</h2>
-          <div class="grid" id="upcomingGrid"></div>
-        </section>
-
-        <section class="section" aria-label="Links">
-          <h2>Links</h2>
-          <div class="grid" id="linksGrid"></div>
-        </section>
+      <div class="client-strip">
+        <p>Quick sections</p>
+        <div class="mini-nav">
+          <a href="#quick-links">Quick Links</a>
+          <a href="#about">About Me</a>
+<a href="#stage-door">Stage Door</a>
+          <a href="#planned-activities">Planned Activities</a>
+          <a href="#field-notes">Field Notes</a>
+          <a href="#useful-links">Useful Links</a>
+          <a href="#connect">Connect</a>
+        </div>
       </div>
 
+      <main id="mainContent"></main>
+
       <footer>
-        <div>© <span id="year"></span> <span id="footerName"></span></div>
-        <div class="kbdhint">Press <kbd>Enter</kbd> to jump to Contact</div>
-
-        <div class="theme-wrap">
-          <button class="toggle" id="payToggle" type="button" aria-expanded="false" aria-controls="pay-panel" title="Payments">
-            $
-          </button>
-
-          <button class="toggle" id="themeToggle" type="button" aria-expanded="false" aria-controls="theme-panel">
-            Themes
-          </button>
-
-          <div id="pay-panel" class="pay-panel" hidden>
-            <div class="pay-list" id="payList"></div>
-          </div>
-
-          <div id="theme-panel" class="theme-panel" hidden>
-            <div class="theme-row" role="group" aria-label="Themes">
-              <button class="themebtn" data-theme="modern" aria-pressed="true" type="button">Modern</button>
-              <button class="themebtn" data-theme="arcade" aria-pressed="false" type="button">Arcade</button>
-              <button class="themebtn" data-theme="seventies" aria-pressed="false" type="button">70s</button>
-              <button class="themebtn" data-theme="eighties" aria-pressed="false" type="button">80s</button>
-              <button class="themebtn" data-theme="nineties" aria-pressed="false" type="button">90s</button>
-            </div>
-
-            <div class="theme-row" role="group" aria-label="Seasonal themes">
-              <button class="themebtn" data-theme="winter" aria-pressed="false" type="button">Winter</button>
-              <button class="themebtn" data-theme="spring" aria-pressed="false" type="button">Spring</button>
-              <button class="themebtn" data-theme="summer" aria-pressed="false" type="button">Summer</button>
-              <button class="themebtn" data-theme="fall" aria-pressed="false" type="button">Fall</button>
-              <button class="themebtn" data-theme="halloween" aria-pressed="false" type="button">Halloween</button>
-              <button class="themebtn" data-theme="holiday" aria-pressed="false" type="button">Holidays</button>
-              <button class="themebtn" data-seasonal type="button">Auto</button>
+        <span>© <span id="year"></span> <span id="footerName"></span></span>
+        <div class="connect-row" style="justify-content:flex-start;margin:0;">
+          <div class="drawer">
+            <button class="pill" id="payBtn" type="button" aria-expanded="false" aria-controls="payPanel">$</button>
+            <div class="drawer-panel" id="payPanel" hidden>
+              <p class="drawer-title">Payment options</p>
+              <div class="drawer-list" id="paymentDrawer"></div>
             </div>
           </div>
         </div>
@@ -728,357 +252,308 @@
   </div>
 
   <script>
-    // ----------------------------
-    // CONFIG (edit this block only)
-    // ----------------------------
-    const SITE = {
-      name: "Jeremy Hart",
-      location: "Gilford, NH",
-      about: "Fitness • Technology • Theatre",
+    const fallbackData = null;
 
-      contactNote: "Quick question? Text me. Anything longer, email.",
-      phone: "+19046080347",
-      email: "jeremy.allan.hart@gmail.com",
-      vcfPath: "jeremy-hart.vcf",
+    const externalAttrs = item => item.external ? ' target="_blank" rel="noopener"' : '';
+    const linkTag = (item, cls, inner) => item.url
+      ? `<a class="${cls}" href="${item.url}"${externalAttrs(item)}>${inner}</a>`
+      : `<div class="${cls}">${inner}</div>`;
 
-      showAvatar: true,
-      avatar: {
-        src: "assets/avatar.png",
-        alt: "Illustration of Jeremy with his dog"
-      },
 
-      showFeatured: false,
-      featured: {
-        title: "Start here",
-        desc: "Writing, notes, and whatever I’m thinking about lately",
-        url: "https://jeremyallanhart.substack.com/"
-      },
+    function parseMonthDay(value){
+      const [month, day] = value.split("-").map(Number);
+      return { month, day };
+    }
 
-      tagline: "Curious by default. Resilient by design. Built on grit.",
-      aboutExpanded: {
-        lead: "Hi, I’m Jeremy. I like understanding how things work and making them better, whether that’s a project, a process, or something in my own life.",
-        paragraphs: [
-          "I’m naturally curious, and I do my best work when I’m learning, building, or solving problems. I’m also a dad, which keeps me grounded and focused on what matters.",
-          "I’m especially interested in leadership and how people think, grow, make decisions, and handle pressure. The Bible and Stoic philosophy have shaped how I approach responsibility, discipline, and perspective. My time in the U.S. Marine Corps reinforced those values and taught me to stay calm and steady when things get hard.",
-          "A phrase I come back to is \"slow is smooth, smooth is fast.\" It’s a reminder to do things the right way, with patience and attention, because that’s what actually moves you forward. I push my limits and improve through consistency. Fitness helps me stay centered, music is part of my day, and I’ve learned that real growth usually starts just outside your comfort zone."
-        ]
-      },
+    function dateValueForYear(month, day, year){
+      return new Date(year, month - 1, day).setHours(0,0,0,0);
+    }
 
-      upcomingShows: [
-        {
-          title: "Shrek The Musical",
-          tag: "Theatre",
-          date: "Aug 7-9, 2026",
-          time: "Aug 7: 7:30 PM • Aug 8: 7:30 PM • Aug 9: 2:00 PM",
-          venue: "The Colonial Theatre, 609 Main Street, Laconia NH",
-          locationDetail: "",
-          production: "",
-          role: "Puppeteer",
-          url: "https://www.powerhousenh.org/shrek"
+    function isInMonthDayRange(today, start, end){
+      const year = today.getFullYear();
+      const s = parseMonthDay(start);
+      const e = parseMonthDay(end);
+      const now = new Date(year, today.getMonth(), today.getDate()).setHours(0,0,0,0);
+      let startValue = dateValueForYear(s.month, s.day, year);
+      let endValue = dateValueForYear(e.month, e.day, year);
+
+      if(startValue <= endValue){
+        return now >= startValue && now <= endValue;
+      }
+
+      return now >= startValue || now <= endValue;
+    }
+
+    function findSeasonalPalette(themes){
+      const today = new Date();
+
+      const holidays = themes.holidays || [];
+      for(const theme of holidays){
+        if(isInMonthDayRange(today, theme.start, theme.end)){
+          return theme;
         }
-      ],
+      }
 
-      links: [
-        { title: "Work stuff",        tag: "Professional", desc: "LinkedIn",  url: "https://www.linkedin.com/in/jeremyallanhart/" },
-        { title: "Read my writing",   tag: "Writing",      desc: "Substack",  url: "https://jeremyallanhart.substack.com/" },
-        { title: "Training log",      tag: "Fitness",      desc: "Strava",    url: "https://www.strava.com/athletes/18895402" },
-        { title: "What I’m reading",  tag: "Reading",      desc: "Goodreads", url: "https://www.goodreads.com/user/show/12091117-jeremy-hart" },
-        { title: "Short updates",     tag: "Social",       desc: "X",         url: "https://x.com/jeremyhart" },
-        { title: "Videos I make",     tag: "Social",       desc: "YouTube",   url: "https://www.youtube.com/@jeremyallanhart" },
-        { title: "Photos and life",   tag: "Social",       desc: "Instagram", url: "https://www.instagram.com/jeremyallanhart/" },
-        { title: "Facebook",          tag: "Social",       desc: "Facebook",  url: "https://www.facebook.com/hart.jeremy" }
-      ],
-
-      payments: [
-        { title: "Cash App", tag: "Payments", desc: "$jeremyallanhart", url: "https://cash.app/$jeremyallanhart" },
-        { title: "Venmo",    tag: "Payments", desc: "@jeremyhart",      url: "https://venmo.com/jeremyhart" }
-      ]
-    };
-
-    // ----------------------------
-    // Helpers
-    // ----------------------------
-    const $ = (id) => document.getElementById(id);
-
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+      const month = String(today.getMonth() + 1);
+      return (themes.months || {})[month] || themes.default || null;
     }
 
-    // ----------------------------
-    // Populate from config
-    // ----------------------------
-    $("year").textContent = new Date().getFullYear();
+    function applyPalette(palette){
+      if(!palette || !palette.colors) return;
+      const root = document.documentElement;
+      Object.entries(palette.colors).forEach(([key, value]) => {
+        root.style.setProperty(key, value);
+      });
 
-    $("name").textContent = SITE.name;
-    $("tagline").textContent = SITE.tagline || "";
-    $("footerName").textContent = SITE.name;
-    $("location").textContent = SITE.location;
-    $("about").textContent = SITE.about;
-
-    $("contactNote").textContent = SITE.contactNote;
-
-    $("callLink").href = `tel:${SITE.phone}`;
-    $("textLink").href = `sms:${SITE.phone}`;
-    $("emailLink").href = `mailto:${SITE.email}`;
-    $("vcfLink").href = SITE.vcfPath;
-
-    const avatarEl = $("avatar");
-    if (avatarEl){
-      if (SITE.showAvatar && SITE.avatar?.src){
-        avatarEl.src = SITE.avatar.src;
-        avatarEl.alt = SITE.avatar.alt || "";
-      } else {
-        avatarEl.remove();
+      if(palette.name){
+        document.documentElement.setAttribute("data-season-theme", palette.name);
       }
     }
 
-    const featuredSection = $("featuredSection");
-    if (!SITE.showFeatured){
-      featuredSection.remove();
-    } else {
-      $("featuredTitle").textContent = SITE.featured.title;
-      $("featuredDesc").textContent = SITE.featured.desc;
-      $("featuredLink").href = SITE.featured.url;
+    function applySeasonalTheme(themes){
+      applyPalette(findSeasonalPalette(themes));
     }
 
-    $("aboutLead").textContent = SITE.aboutExpanded.lead;
-    const aboutBody = $("aboutBody");
-    aboutBody.innerHTML = "";
-    (SITE.aboutExpanded.paragraphs || []).forEach((p) => {
-      const para = document.createElement("p");
-      para.textContent = p;
-      aboutBody.appendChild(para);
-    });
 
-    const upcomingGrid = $("upcomingGrid");
-    const upcomingSection = $("upcomingSection");
 
-    if (!SITE.upcomingShows || SITE.upcomingShows.length === 0) {
-      upcomingSection.remove();
-    } else {
-      upcomingGrid.innerHTML = "";
-      SITE.upcomingShows.forEach((show) => {
-        const a = document.createElement("a");
-        a.className = "link";
-        a.href = show.url;
-        a.target = "_blank";
-        a.rel = "noopener";
 
-        a.innerHTML = `
-          <div class="top">
-            <strong>${escapeHtml(show.title)}</strong>
-            <span class="tag">${escapeHtml(show.tag)}</span>
-          </div>
-          <div class="desc">
-            ${escapeHtml(show.date)} • ${escapeHtml(show.time)}<br>
-            ${escapeHtml(show.venue)}<br>
-            ${show.production ? `<strong>Show:</strong> ${escapeHtml(show.production)}<br>` : ""}
-            ${show.role ? `<strong>Role:</strong> ${escapeHtml(show.role)}<br>` : ""}
-            ${show.locationDetail ? `<strong>Area:</strong> ${escapeHtml(show.locationDetail)}<br>` : ""}
-          </div>
-        `;
-
-        upcomingGrid.appendChild(a);
-      });
+    function visibleItems(items){
+      return Array.isArray(items) ? items.filter(item => item.active !== false) : [];
     }
 
-    const grid = $("linksGrid");
-    grid.innerHTML = "";
-    SITE.links.forEach((l) => {
-      const a = document.createElement("a");
-      a.className = "link";
-      a.href = l.url;
-      a.target = "_blank";
-      a.rel = "noopener";
+    function hasItems(value){
+      return Array.isArray(value) && value.length > 0;
+    }
 
-      a.innerHTML = `
-        <div class="top">
-          <strong>${escapeHtml(l.title)}</strong>
-          <span class="tag">${escapeHtml(l.tag)}</span>
+    function navItem(id, label, shouldShow){
+      return shouldShow ? `<a href="#${id}">${label}</a>` : "";
+    }
+
+    function escapeHtml(value){
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+      }[char]));
+    }
+
+    function renderCard(item){
+      const inner = `
+        <div class="card-icon">${escapeHtml(item.icon || "•")}</div>
+        <div class="card-top">
+          <strong>${escapeHtml(item.title)}</strong>
+          ${item.tag ? `<span class="tag">${escapeHtml(item.tag)}</span>` : ""}
         </div>
-        <div class="desc">${escapeHtml(l.desc)}</div>
+        <p>${escapeHtml(item.description)}</p>`;
+      return linkTag(item, "card", inner);
+    }
+
+    function renderQuickLink(item){
+      const inner = `
+        <div class="quick-icon">${escapeHtml(item.icon || "•")}</div>
+        <strong>${escapeHtml(item.title)}</strong>
+        <p>${escapeHtml(item.description)}</p>`;
+      return linkTag(item, `quick-card${item.primary ? " primary-contact" : ""}`, inner);
+    }
+
+    function renderEvent(item){
+      const inner = `
+        <div class="date"><span class="month">${escapeHtml(item.month)}</span><span class="day">${escapeHtml(item.day)}</span></div>
+        <div>
+          <strong>${escapeHtml(item.title)}</strong>
+          <p>${escapeHtml(item.details)}</p>
+          <p>${escapeHtml(item.note)}</p>
+          <div class="event-tags">${(item.tags || []).map(tag => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
+        </div>`;
+      return linkTag(item, "event", inner);
+    }
+
+    function renderSite(data){
+      const p = data.profile;
+
+      document.title = `${p.name}`;
+      document.getElementById("brandMark").textContent = p.initials;
+      document.getElementById("brandName").textContent = p.name;
+      document.getElementById("footerName").textContent = p.name;
+      document.getElementById("year").textContent = new Date().getFullYear();
+      applySeasonalTheme(data.themes || {});
+
+      document.getElementById("utilityBar").innerHTML = `
+        <a href="tel:${p.phoneHref}">☎ ${escapeHtml(p.phoneDisplay)}</a>
+        <span>Quick question? Text me.</span>
+        <a href="${p.contactCard}">Save contact</a>`;
+
+      document.getElementById("heroEyebrow").textContent = p.eyebrow;
+      const headline = escapeHtml(p.headline).replace("little about me.", `<span class="accent">little about me.</span>`);
+      document.getElementById("heroHeadline").innerHTML = headline;
+      document.getElementById("heroIntro").textContent = p.intro;
+
+      document.getElementById("heroActions").innerHTML = `
+        <a class="btn" href="${p.contactCard}">Save Contact</a>
+        <a class="btn secondary" href="sms:${p.phoneHref}">Text</a>
+        <a class="btn secondary" href="mailto:${p.email}">Email</a>
+        <a class="btn secondary" href="${p.scheduleUrl}" target="_blank" rel="noopener">Schedule</a>`;
+
+
+      const stageShows = visibleItems(data.stageDoor?.onStage?.shows);
+      const showStageDoor = hasItems(stageShows);
+      const showPlannedActivities = hasItems(data.plannedActivities?.items);
+      const showFieldNotes = hasItems(data.fieldNotes?.links);
+      const showUsefulLinks = hasItems(data.usefulLinks?.links);
+
+      document.getElementById("topNav").innerHTML = [
+        navItem("quick-links", "Quick Links", hasItems(data.quickLinks)),
+        navItem("about", "About", true),
+        navItem("stage-door", "Stage Door", showStageDoor),
+        navItem("connect", "Connect", true)
+      ].join("");
+
+      document.getElementById("sectionNav").innerHTML = [
+        navItem("quick-links", "Quick Links", hasItems(data.quickLinks)),
+        navItem("about", "About Me", true),
+        navItem("stage-door", "Stage Door", showStageDoor),
+        navItem("planned-activities", "Planned Activities", showPlannedActivities),
+        navItem("field-notes", "Field Notes", showFieldNotes),
+        navItem("useful-links", "Useful Links", showUsefulLinks),
+        navItem("connect", "Connect", true)
+      ].join("");
+
+
+      document.getElementById("heroVisual").innerHTML = `
+        <a class="visual-card" href="${data.featured.url}" target="_blank" rel="noopener">
+          <small>${escapeHtml(data.featured.label)}</small>
+          <strong>${escapeHtml(data.featured.title)}</strong>
+          <p>${escapeHtml(data.featured.description)}</p>
+        </a>`;
+
+      const main = document.getElementById("mainContent");
+      main.innerHTML = `
+        ${hasItems(data.quickLinks) ? `
+        <section class="section compact alt" id="quick-links">
+          <div class="section-head">
+            <small>Quick Links</small>
+            <h2>Find me, message me, or schedule time</h2>
+            <p>Fast contact options first, then the rest of the page gives more context.</p>
+          </div>
+          <div class="quick-grid">${data.quickLinks.map(renderQuickLink).join("")}</div>
+        </section>` : ""}
+
+        <section class="section" id="about">
+          <div class="about-wrap">
+            <div class="about-badge">
+              <strong>${escapeHtml(p.aboutBadge)}</strong>
+              <span>${escapeHtml(p.aboutTagline)}</span>
+            </div>
+            <div>
+              <div class="section-head left">
+                <small>${escapeHtml(p.aboutLabel)}</small>
+                <h2>${escapeHtml(p.aboutHeading)}</h2>
+              </div>
+              <div class="about-copy">${p.aboutParagraphs.map(text => `<p>${escapeHtml(text)}</p>`).join("")}</div>
+              <div class="benefits">${p.aboutBullets.map(text => `<div class="benefit"><span>✓</span>${escapeHtml(text)}</div>`).join("")}</div>
+            </div>
+          </div>
+        </section>
+
+        ${showStageDoor ? `
+        <section class="section" id="stage-door">
+          <div class="section-head">
+            <small>${escapeHtml(data.stageDoor.label)}</small>
+            <h2>${escapeHtml(data.stageDoor.onStage.heading)}</h2>
+            <p>${escapeHtml(data.stageDoor.onStage.description)}</p>
+          </div>
+          <div class="cards">
+            ${stageShows.map(show => linkTag({
+              url: show.url,
+              external: true
+            }, "card show-card", `
+              <div class="card-icon">🎭</div>
+              <div class="card-top"><strong>${escapeHtml(show.title)}</strong><span class="tag">${escapeHtml(show.status)}</span></div>
+              <p>${escapeHtml(show.date)} · ${escapeHtml(show.location)}</p>
+              ${show.times ? `<p><strong style="font-size:.95rem;">Times:</strong> ${escapeHtml(show.times)}</p>` : ""}
+              <p><strong style="font-size:.95rem;">Role:</strong> ${escapeHtml(show.role)}</p>
+            `)).join("")}
+          </div>
+        </section>` : ""}
+
+        ${showPlannedActivities ? `
+        <section class="section alt" id="planned-activities">
+          <div class="section-head">
+            <small>${escapeHtml(data.plannedActivities.label)}</small>
+            <h2>${escapeHtml(data.plannedActivities.heading)}</h2>
+            <p>${escapeHtml(data.plannedActivities.description)}</p>
+          </div>
+          <div class="event-grid">${data.plannedActivities.items.map(renderEvent).join("")}</div>
+        </section>` : ""}
+
+        ${showFieldNotes ? `
+        <section class="section" id="field-notes">
+          <div class="split-section">
+            <div class="field-visual" aria-hidden="true"></div>
+            <div>
+              <div class="section-head left">
+                <small>${escapeHtml(data.fieldNotes.label)}</small>
+                <h2>${escapeHtml(data.fieldNotes.heading)}</h2>
+                <p>${escapeHtml(data.fieldNotes.description)}</p>
+              </div>
+              <div class="benefits">${data.fieldNotes.links.map(link => `<a class="benefit" href="${link.url}" target="_blank" rel="noopener"><span>✓</span>${escapeHtml(link.title)}</a>`).join("")}</div>
+            </div>
+          </div>
+        </section>` : ""}
+
+        ${showUsefulLinks ? `
+        <section class="section alt" id="useful-links">
+          <div class="section-head">
+            <small>${escapeHtml(data.usefulLinks.label)}</small>
+            <h2>${escapeHtml(data.usefulLinks.heading)}</h2>
+            <p>${escapeHtml(data.usefulLinks.description)}</p>
+          </div>
+          <div class="cards three">${data.usefulLinks.links.map(item => renderCard({...item, external:true})).join("")}</div>
+        </section>` : ""}
+
+        <section class="section" id="connect">
+          <div class="section-head">
+            <small>Connect</small>
+            <h2>Reach me directly</h2>
+            <p>Quick question? Text me. Anything longer, email. Scheduling is here too.</p>
+          </div>
+          <div class="connect-row">
+            <a class="pill" href="tel:${p.phoneHref}">Call</a>
+            <a class="pill" href="sms:${p.phoneHref}">Text</a>
+            <a class="pill" href="mailto:${p.email}">Email</a>
+            <a class="pill" href="${p.scheduleUrl}" target="_blank" rel="noopener">Schedule time</a>
+            <a class="pill" href="${p.contactCard}">Add to contacts</a>
+          </div>
+        </section>
       `;
-      grid.appendChild(a);
-    });
 
-    const payList = $("payList");
-    payList.innerHTML = "";
-    (SITE.payments || []).forEach((p) => {
-      const a = document.createElement("a");
-      a.className = "pay-item";
-      a.href = p.url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.innerHTML = `
-        <div class="pay-left">
-          <div class="pay-title">${escapeHtml(p.title)}</div>
-          <div class="pay-desc">${escapeHtml(p.desc || "")}</div>
-        </div>
-        <div class="pay-tag">${escapeHtml(p.tag || "Payments")}</div>
-      `;
-      payList.appendChild(a);
-    });
+      document.getElementById("paymentDrawer").innerHTML = data.payments.map(item => `
+        <a class="drawer-link" href="${item.url}" target="_blank" rel="noopener">
+          <strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.description)}</span>
+        </a>`).join("");
 
-    document.addEventListener("keydown", (e) => {
-      const tag = (document.activeElement && document.activeElement.tagName) ? document.activeElement.tagName.toLowerCase() : "";
-      if (tag === "button" || tag === "a" || tag === "input" || tag === "textarea" || tag === "select") return;
-      if (e.key === "Enter") $("contact")?.scrollIntoView({behavior:"smooth"});
-    });
-
-    const aboutToggle = $("aboutToggle");
-    const aboutPanel = $("about-panel");
-
-    function setAboutOpen(open){
-      aboutToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      aboutPanel.hidden = !open;
+      const payBtn = document.getElementById("payBtn");
+      const payPanel = document.getElementById("payPanel");
+      function closePay(){ payBtn.setAttribute("aria-expanded","false"); payPanel.hidden = true; }
+      function openPay(){ payBtn.setAttribute("aria-expanded","true"); payPanel.hidden = false; }
+      payBtn.addEventListener("click", event => { event.stopPropagation(); payPanel.hidden ? openPay() : closePay(); });
+      payPanel.addEventListener("click", event => event.stopPropagation());
+      document.addEventListener("click", closePay);
+      document.addEventListener("keydown", event => { if(event.key === "Escape") closePay(); });
     }
 
-    aboutToggle.addEventListener("click", () => {
-      const open = aboutToggle.getAttribute("aria-expanded") === "true";
-      setAboutOpen(!open);
-    });
-
-    const themeToggle = $("themeToggle");
-    const themePanel = $("theme-panel");
-
-    const payToggle = $("payToggle");
-    const payPanel = $("pay-panel");
-
-    function setThemePanelOpen(open){
-      themeToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      themePanel.hidden = !open;
-      if (open) setPayPanelOpen(false);
-    }
-    function setPayPanelOpen(open){
-      payToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      payPanel.hidden = !open;
-      if (open) setThemePanelOpen(false);
-    }
-
-    themeToggle.addEventListener("click", () => {
-      const open = themeToggle.getAttribute("aria-expanded") === "true";
-      setThemePanelOpen(!open);
-    });
-
-    payToggle.addEventListener("click", () => {
-      const open = payToggle.getAttribute("aria-expanded") === "true";
-      setPayPanelOpen(!open);
-    });
-
-    document.addEventListener("click", (e) => {
-      const inTheme = e.target.closest("#theme-panel") || e.target.closest("#themeToggle");
-      const inPay = e.target.closest("#pay-panel") || e.target.closest("#payToggle");
-      if (!inTheme) setThemePanelOpen(false);
-      if (!inPay) setPayPanelOpen(false);
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape"){
-        setThemePanelOpen(false);
-        setPayPanelOpen(false);
-        setAboutOpen(false);
-      }
-    });
-
-    const valid = new Set([
-      "modern","arcade","seventies","eighties","nineties",
-      "winter","spring","summer","fall",
-      "halloween","holiday"
-    ]);
-
-    const themeButtons = [...document.querySelectorAll(".themebtn")];
-    const body = document.body;
-
-    function getSeasonalTheme(d = new Date()){
-      const m = d.getMonth() + 1;
-      const day = d.getDate();
-
-      if (m === 10 && day >= 25) return "halloween";
-      if (m === 12 && day >= 10) return "holiday";
-
-      if (m === 12 || m === 1 || m === 2) return "winter";
-      if (m >= 3 && m <= 5) return "spring";
-      if (m >= 6 && m <= 8) return "summer";
-      return "fall";
-    }
-
-    function setTheme(theme, { persist=true, reason="manual", updateUrl=true } = {}){
-      if (!valid.has(theme)) theme = "modern";
-      body.setAttribute("data-theme", theme);
-
-      themeButtons.forEach(b => {
-        const t = b.dataset.theme;
-        if (!t) return;
-        b.setAttribute("aria-pressed", t === theme ? "true" : "false");
+    fetch("data.json")
+      .then(response => {
+        if(!response.ok) throw new Error("Could not load data.json");
+        return response.json();
+      })
+      .then(renderSite)
+      .catch(error => {
+        document.body.innerHTML = `<main style="font-family:system-ui;padding:32px;max-width:720px;margin:auto;">
+          <h1>Could not load data.json</h1>
+          <p>This version uses a separate data.json file. If you opened index.html directly from your computer, run it through a local server or upload both files to GitHub Pages.</p>
+          <p><code>python3 -m http.server</code></p>
+        </main>`;
+        console.error(error);
       });
-
-      if (persist){
-        localStorage.setItem("theme", theme);
-        localStorage.setItem("theme_reason", reason);
-      }
-
-      if (updateUrl){
-        const u = new URL(location.href);
-        u.searchParams.set("theme", theme);
-        history.replaceState({}, "", u);
-      }
-    }
-
-    function setAutoSeasonal(){
-      localStorage.removeItem("theme");
-      localStorage.removeItem("theme_reason");
-      const auto = getSeasonalTheme();
-      body.setAttribute("data-theme", auto);
-
-      themeButtons.forEach(b => {
-        const t = b.dataset.theme;
-        if (!t) return;
-        b.setAttribute("aria-pressed", t === auto ? "true" : "false");
-      });
-
-      const u = new URL(location.href);
-      u.searchParams.delete("theme");
-      history.replaceState({}, "", u);
-    }
-
-    const params = new URLSearchParams(location.search);
-    const fromUrl = params.get("theme");
-
-    if (fromUrl && valid.has(fromUrl)){
-      setTheme(fromUrl, { persist:true, reason:"manual", updateUrl:false });
-    } else {
-      const stored = localStorage.getItem("theme");
-      const reason = localStorage.getItem("theme_reason");
-      if (stored && valid.has(stored) && reason === "manual"){
-        setTheme(stored, { persist:false, reason:"manual", updateUrl:false });
-      } else {
-        const auto = getSeasonalTheme();
-        body.setAttribute("data-theme", auto);
-        themeButtons.forEach(b => {
-          const t = b.dataset.theme;
-          if (!t) return;
-          b.setAttribute("aria-pressed", t === auto ? "true" : "false");
-        });
-      }
-    }
-
-    themeButtons.forEach(b => {
-      if (b.hasAttribute("data-seasonal")){
-        b.addEventListener("click", () => setAutoSeasonal());
-        return;
-      }
-      const t = b.dataset.theme;
-      if (!t) return;
-
-      b.addEventListener("click", () => {
-        setTheme(t, { persist:true, reason:"manual", updateUrl:true });
-      });
-    });
   </script>
 </body>
 </html>
