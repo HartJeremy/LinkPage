@@ -179,19 +179,15 @@
       .drawer-panel{ left:10px; right:10px; width:auto; }
     }
   
-    /* Top-name size and mobile control fixes */
+  
+    /* Top-name-only size and mobile control fixes */
     .brand,
-    .brand-name{
-      font-size:clamp(1.35rem, 3vw, 2rem) !important;
+    .brand-name,
+    .nav-brand{
+      font-size:clamp(1.45rem, 3.2vw, 2.15rem) !important;
       font-weight:950 !important;
-      letter-spacing:-.04em !important;
-    }
-    .hero h1,
-    .hero-title,
-    .headline h1{
-      font-size:clamp(4.4rem, 14vw, 8.4rem) !important;
-      line-height:.82 !important;
-      letter-spacing:-.08em !important;
+      letter-spacing:-.045em !important;
+      line-height:1 !important;
     }
     #themeBtn,
     #payBtn{
@@ -211,13 +207,9 @@
     }
     @media (max-width:720px){
       .brand,
-      .brand-name{
-        font-size:1.55rem !important;
-      }
-      .hero h1,
-      .hero-title,
-      .headline h1{
-        font-size:clamp(4.8rem, 22vw, 7.4rem) !important;
+      .brand-name,
+      .nav-brand{
+        font-size:1.65rem !important;
       }
       footer{
         padding-bottom:32px !important;
@@ -262,7 +254,7 @@
         <div class="hero-inner">
           <div>
             <p class="eyebrow">Jeremy Hart</p>
-            <h2>Quick links, current projects, and a <span class="accent">little about me.</span></h2>
+            <h1>Quick links, current projects, and a <span class="accent">little about me.</span></h1>
             <p class="hero-copy">A simple place to find what I’m working on, what I’m involved in, planned activities, field notes, useful links, and the easiest ways to connect.</p>
             <div class="hero-actions contact-actions" aria-label="Quick contact actions">
               <a class="btn" href="jeremy-hart.vcf">Save Contact</a>
