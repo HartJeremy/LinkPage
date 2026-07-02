@@ -385,6 +385,64 @@
   }
   .card[hidden]{display:none;}
 
+
+  /* ===== PRODUCTION SUPPORT / EXTRA ===== */
+  .support-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px,1fr));
+    gap:18px;
+  }
+  .support-card{
+    background:var(--charcoal);
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--reel-teal);
+    border-radius:4px;
+    padding:20px 18px 16px;
+  }
+  .support-card h3{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.5rem;
+    letter-spacing:.01em;
+    color:var(--fog);
+    line-height:1.05;
+    margin-bottom:8px;
+  }
+  .support-card .work{
+    color:var(--fog);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .support-card .support-meta{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--fog-dim);
+    border-top:1px solid var(--hairline);
+    padding-top:10px;
+    margin-top:10px;
+  }
+  .support-note{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--fog-dim);
+    margin:-18px 0 28px;
+  }
+
+
+  .tag.role{background:var(--marquee-red); color:#fff;}
+  .tag.choir{background:var(--spotlight); color:var(--void);}
+  .tag.powerchords{background:var(--reel-teal); color:var(--void);}
+  .tag.stagemgmt{background:#9b7bff; color:#fff;}
+  .tag.support{background:#8bd450; color:var(--void);}
+  .tag.improv{background:#fbbf24; color:var(--void);}
+  .card .credit-line{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--fog-dim);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:8px;
+  }
+
   /* ===== WORKSHOPS ===== */
   .notebook{
     background:var(--charcoal);
@@ -453,13 +511,17 @@
 </header>
 
 <div class="stats" id="stats"></div>
+<div class="section-sub" style="max-width:1040px;margin:18px auto 0;padding:0 24px;text-align:center;">
+  Official counts, Power Chords extras, and production-support credits are tracked separately.
+</div>
+
 
 <section class="section" id="upcoming-section">
   <div class="section-head">
     <h2 class="display">On the Horizon</h2>
     <div class="rule"></div>
   </div>
-  <p class="section-sub">booked, not yet run — these move to the callboard (and the tally above) once the curtain closes</p>
+  <p class="section-sub">booked, not yet run — items move to the callboard automatically after their date passes</p>
   <div class="upcoming-list" id="upcoming-list"></div>
 </section>
 
@@ -468,18 +530,32 @@
     <h2 class="display">The Callboard</h2>
     <div class="rule"></div>
   </div>
-  <p class="section-sub">every completed show, sorted newest to oldest — tap a filter to sort by what I was doing</p>
+  <p class="section-sub">completed credits, sorted newest to oldest — filter by the kind of credit</p>
 
   <div class="filters" id="filters">
     <button class="filter-btn active" data-filter="all">All (<span id="count-all"></span>)</button>
-    <button class="filter-btn" data-filter="onstage">Onstage (<span id="count-onstage"></span>)</button>
-    <button class="filter-btn" data-filter="crew">Crew &amp; Backstage (<span id="count-crew"></span>)</button>
+    <button class="filter-btn" data-filter="role">Named Roles (<span id="count-role"></span>)</button>
+    <button class="filter-btn" data-filter="choir">Choir / Ensemble (<span id="count-choir"></span>)</button>
+    <button class="filter-btn" data-filter="powerchords">Power Chords (<span id="count-powerchords"></span>)</button>
+    <button class="filter-btn" data-filter="improv">Improv / Showcase (<span id="count-improv"></span>)</button>
+    <button class="filter-btn" data-filter="crew">Crew / Stage Mgmt (<span id="count-crew"></span>)</button>
     <select class="company-select" id="company-select">
       <option value="all">All Companies</option>
     </select>
   </div>
 
   <div class="callboard" id="callboard"></div>
+</section>
+
+
+<section class="section" id="production-support-section">
+  <div class="section-head">
+    <h2 class="display">Production Support / Extra</h2>
+    <div class="rule"></div>
+  </div>
+  <p class="section-sub">build, strike, props, electronics, and practical support — tracked separately from official show counts</p>
+  <p class="support-note">These are real production contributions, but they are not included in the official show tally unless separately credited.</p>
+  <div class="support-list" id="production-support"></div>
 </section>
 
 <section class="section">
@@ -514,20 +590,20 @@
 const palette = ["#4fc3f7","#9b7bff","#ff8a3d","#c792ea","#8bd450","#ff5f8f","#5eead4","#fbbf24"];
 const companies = [
   {name:"Powerhouse Theatre Collaborative", prefix:"PTC", extraPrefix:"xPTC", color:"#4fc3f7"},
-  {name:"Winni Players", prefix:"WP", color:"#9b7bff"},
+  {name:"Winni Players", prefix:"WP", extraPrefix:"xWP", color:"#9b7bff"},
   // {name:"New Company", prefix:"NC"},  <-- example: add future companies like this
 ];
 companies.forEach((c,i) => { if(!c.color) c.color = palette[i % palette.length]; });
 
 function matchCode(code){
   for(const c of companies){
-    if(c.extraPrefix && code.startsWith(c.extraPrefix + '-')) return {company:c, isExtra:true};
-    if(code.startsWith(c.prefix + '-')) return {company:c, isExtra:false};
+    if(c.extraPrefix && (code === c.extraPrefix || code.startsWith(c.extraPrefix + '-'))) return {company:c, isExtra:true};
+    if(code === c.prefix || code.startsWith(c.prefix + '-')) return {company:c, isExtra:false};
   }
   return null;
 }
 function companiesForShow(show){
-  const codes = show.code.split(/[,\s]+/).filter(Boolean);
+  const codes = (show.displayCode || show.code).split(/[,\s]+/).filter(Boolean);
   const matched = codes.map(matchCode).filter(Boolean);
   const seen = new Set();
   return matched.filter(m => {
@@ -539,30 +615,81 @@ function companiesForShow(show){
 
 // ---- Show data (from Play Resume workbook) ----
 const shows = [
-  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2023-12", dates:"Dec 15-17, 2023", code:"PTC-1"},
-  {company:"Powerhouse Theatre Collaborative", show:"Play Festival", role:"Heartless — Jerry", type:"onstage", date:"2024-06", dates:"Jun 1-2, 2024", code:"PTC-2"},
-  {company:"Powerhouse Theatre Collaborative", show:"Alice's Adventure in Wonderland", role:"Caterpillar", type:"onstage", date:"2024-09", dates:"Sep 15, 21-22, 2024", code:"PTC-3"},
-  {company:"Powerhouse Theatre Collaborative", show:"The Crucible", role:"Cheever", type:"onstage", date:"2024-10", dates:"Oct 11-13, 2024", code:"PTC-4"},
-  {company:"Powerhouse Theatre Collaborative", show:"Power Chords Holiday Concert", role:"Choir", type:"onstage", date:"2024-11a", dates:"Nov 15 & 17, 2024", code:"PTC-5"},
-  {company:"Winni Players", show:"The WXYZ Radio Hour: American Radio Classics Live On Stage", role:"The Lone Ranger — Jeremy\nChallenge of the Yukon — Randy\nThe Green Hornet — Kato / 2nd Cop", type:"onstage", date:"2024-11b", dates:"Nov 21-24, 2024", code:"WP-1"},
-  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2024-12", dates:"Dec 13-15, 2024", code:"PTC-6"},
-  {company:"Winni Players", show:"Treasure Island: A Radio Play", role:"Jim Hawkins (narrator)", type:"onstage", date:"2025-03a", dates:"Mar 27-30, 2025", code:"WP-2"},
-  {company:"Powerhouse Theatre Collaborative", show:"The Hunchback of Notre Dame", role:"Choir", type:"onstage", date:"2025-05a", dates:"May 2-4, 2025", code:"PTC-7"},
-  {company:"Powerhouse Theatre Collaborative", show:"Play Festival", role:"Hands Off — Liam", type:"onstage", date:"2025-05b", dates:"May 31-Jun 1, 2025", code:"PTC-8"},
-  {company:"Powerhouse Theatre Collaborative", show:"Elf: The Musical", role:"Security Guard 1 / Policeman 2 / Fake Santa 4 / Man #1 — David Lambert", type:"onstage", date:"2025-08", dates:"Aug 8-10, 2025", code:"PTC-9"},
-  {company:"Powerhouse Theatre Collaborative", show:"Journey through Neverland", role:"Gutless Glen", type:"onstage", date:"2025-09", dates:"Sep 14, 20-21, 2025", code:"PTC-10"},
-  {company:"Powerhouse Theatre Collaborative", show:"Power Chords Holiday Concert", role:"Choir", type:"onstage", date:"2025-11a", dates:"Nov 21 & 23, 2025", code:"PTC-11"},
-  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2025-12a", dates:"Dec 11-14, 2025", code:"PTC-12"},
-  {company:"Powerhouse Theatre Collaborative: Extra", show:"Fezziwig After Dark", role:"Mr. Fezziwig\nUnholy Dancer", type:"onstage", date:"2025-12b", dates:"Dec 13, 2025", code:"xPTC-1"},
-  {company:"Winni Players & Powerhouse", show:"The Play That Goes Wrong", role:"Stage Crew & Assistant Props", type:"crew", date:"2026-03a", dates:"Mar 6-8 & 12-15, 2026", code:"WP-3, PTC-13"},
-  {company:"Powerhouse Theatre Collaborative: Extra", show:"Just Duet", role:"Simba — Hakuna Matata", type:"onstage", date:"2026-03b", dates:"Mar 21, 2026", code:"xPTC-2"},
-  {company:"Winni Players", show:"The Hobbit Radio Play", role:"Narrator, Gollum", type:"onstage", date:"2026-03c", dates:"Mar 27-29, 2026", code:"WP-4"},
-  {company:"Powerhouse Theatre Collaborative", show:"The Magician's Elephant", role:"Puppeteer", type:"onstage", date:"2026-05a", dates:"May 1-3, 2026", code:"PTC-14"},
-  {company:"Powerhouse Theatre Collaborative", show:"Play Festival 2026", role:"In The Rough — Jay", type:"onstage", date:"2026-05b", dates:"May 30-31, 2026", code:"PTC-15"},
-  {company:"Powerhouse Theatre Collaborative", show:"Shrek: The Musical", role:"Puppeteer", type:"onstage", date:"2026-08", dates:"Aug 7-9, 2026", code:"PTC-16"},
-  {company:"Powerhouse Theatre Collaborative", show:"Peter and the Starcatcher", role:"Stage Manager", type:"crew", status:"upcoming", date:"2026-10", dates:"Oct 9-11, 2026", venue:"The Colonial Theatre, 609 Main Street, Laconia NH", times:"Fri & Sat 7:30 PM · Sun 2:00 PM", code:"PTC-17"},
-  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", status:"upcoming", date:"2026-12", dates:"Dec 10-13, 2026", venue:"The Colonial Theatre, Laconia NH", code:"PTC-18"},
+  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2023-12", dates:"Dec 15-17, 2023", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-1"},
+  {company:"Powerhouse Theatre Collaborative", show:"Play Festival", role:"Heartless — Jerry", type:"onstage", date:"2024-06", dates:"Jun 1-2, 2024", venue:"Prescott Farm Environmental Education Center, 928 White Oaks Road, Laconia, NH 03246", code:"PTC-2"},
+  {company:"Powerhouse Theatre Collaborative", show:"Alice's Adventure in Wonderland", role:"Caterpillar", type:"onstage", date:"2024-09", dates:"Sep 15, 21-22, 2024", venue:"Prescott Farm Environmental Education Center, 928 White Oaks Road, Laconia, NH 03246", code:"PTC-3"},
+  {company:"Powerhouse Theatre Collaborative", show:"The Crucible", role:"Cheever", type:"onstage", date:"2024-10", dates:"Oct 11-13, 2024", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-4"},
+  {company:"Powerhouse Theatre Collaborative", show:"Power Chords Holiday Concert", role:"Choir", type:"onstage", date:"2024-11a", dates:"Nov 15 & 17, 2024", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-5"},
+  {company:"Winni Players", show:"The WXYZ Radio Hour: American Radio Classics Live On Stage", role:"The Lone Ranger — Jeremy\nChallenge of the Yukon — Randy\nThe Green Hornet — Kato / 2nd Cop", type:"onstage", date:"2024-11b", dates:"Nov 21-24, 2024", venue:"The Winnipesaukee Playhouse, 33 Footlight Circle, Meredith, NH 03253", code:"WP-1"},
+  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2024-12", dates:"Dec 13-15, 2024", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-6"},
+  {company:"Winni Players", show:"Treasure Island: A Radio Play", role:"Jim Hawkins (narrator)", type:"onstage", date:"2025-03a", dates:"Mar 27-30, 2025", venue:"The Winnipesaukee Playhouse, 33 Footlight Circle, Meredith, NH 03253", code:"WP-2"},
+  {company:"Powerhouse Theatre Collaborative", show:"The Hunchback of Notre Dame", role:"Choir", type:"onstage", date:"2025-05a", dates:"May 2-4, 2025", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-7"},
+  {company:"Powerhouse Theatre Collaborative", show:"Play Festival", role:"Hands Off — Liam", type:"onstage", date:"2025-05b", dates:"May 31-Jun 1, 2025", venue:"Prescott Farm Environmental Education Center, 928 White Oaks Road, Laconia, NH 03246", code:"PTC-8"},
+  {company:"Powerhouse Theatre Collaborative", show:"Elf: The Musical", role:"Security Guard 1 / Policeman 2 / Fake Santa 4 / Man #1 — David Lambert", type:"onstage", date:"2025-08", dates:"Aug 8-10, 2025", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-9"},
+  {company:"Powerhouse Theatre Collaborative", show:"Journey through Neverland", role:"Gutless Glen", type:"onstage", date:"2025-09", dates:"Sep 14, 20-21, 2025", venue:"Prescott Farm Environmental Education Center, 928 White Oaks Road, Laconia, NH 03246", code:"PTC-10"},
+  {company:"Powerhouse Theatre Collaborative", show:"Power Chords Holiday Concert", role:"Choir", type:"onstage", date:"2025-11a", dates:"Nov 21 & 23, 2025", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-11"},
+  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", date:"2025-12a", dates:"Dec 11-14, 2025", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-12"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Fezziwig After Dark", role:"Mr. Fezziwig\nUnholy Dancer", type:"onstage", date:"2025-12b", dates:"Dec 13, 2025", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"xPTC"},
+  {company:"Winni Players & Powerhouse", show:"The Play That Goes Wrong", role:"Stage Crew & Assistant Props", type:"crew", date:"2026-03a", dates:"Mar 6-8 & 12-15, 2026", venue:"The Winnipesaukee Playhouse, 33 Footlight Circle, Meredith, NH 03253", code:"WP-3, PTC-13"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Just Duet", role:"Simba — Hakuna Matata", type:"onstage", date:"2026-03b", dates:"Mar 21, 2026", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"xPTC"},
+  {company:"Winni Players", show:"The Hobbit Radio Play", role:"Narrator, Gollum", type:"onstage", date:"2026-03c", dates:"Mar 27-29, 2026", venue:"The Winnipesaukee Playhouse, 33 Footlight Circle, Meredith, NH 03253", code:"WP-4"},
+  {company:"Powerhouse Theatre Collaborative", show:"The Magician's Elephant", role:"Puppeteer", type:"onstage", date:"2026-05a", dates:"May 1-3, 2026", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-14"},
+  {company:"Powerhouse Theatre Collaborative", show:"Play Festival 2026", role:"In The Rough — Jay", type:"onstage", date:"2026-05b", dates:"May 30-31, 2026", venue:"Prescott Farm Environmental Education Center, 928 White Oaks Road, Laconia, NH 03246", code:"PTC-15"},
+  
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"1776", role:"Power Chords", type:"onstage", status:"upcoming", date:"2026-06", sortDate:"2026-06-27", dates:"June 27, 2026", venue:"Powerhouse Theatre Collaborative", times:"Photos coming soon", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Christmas in July Cruise", role:"Power Chords", type:"onstage", status:"upcoming", date:"2026-07", sortDate:"2026-07-09", dates:"July 9, 2026", venue:"Mount Washington Cruises, 211 Lakeside Ave, Laconia, NH 03246", times:"5:45 PM - 6:45 PM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Christmas in July Cruise", role:"Power Chords", type:"onstage", date:"2025-07", sortDate:"2025-07-10", dates:"July 10, 2025", venue:"Mount Washington Cruises, 211 Lakeside Ave, Laconia, NH 03246", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Christmas in July Cruise", role:"Power Chords", type:"onstage", date:"2024-07", sortDate:"2024-07-11", dates:"July 11, 2024", venue:"Mount Washington Cruises, 211 Lakeside Ave, Laconia, NH 03246", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative", show:"Shrek: The Musical", role:"Puppeteer", type:"onstage", date:"2026-08", dates:"Aug 7-9, 2026", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-16"},
+  {company:"Powerhouse Theatre Collaborative", show:"Peter and the Starcatcher", role:"Stage Manager", type:"crew", status:"upcoming", date:"2026-10", sortDate:"2026-10-09", dates:"Oct 9-11, 2026", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", times:"Fri & Sat 7:30 PM · Sun 2:00 PM", code:"PTC-17"},
+  {company:"Powerhouse Theatre Collaborative", show:"A Christmas Carol: A Musical Ghost Story", role:"Choir", type:"onstage", status:"upcoming", date:"2026-12", sortDate:"2026-12-10", dates:"Dec 10-13, 2026", venue:"The Colonial Theatre, 609 Main Street, Laconia, NH 03246", code:"PTC-18"},
+
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"An Evening of Broadway", role:"Power Chords", type:"onstage", date:"2024-08a", sortDate:"2024-08-13", dates:"Aug 13, 2024", venue:"Power Chords", times:"6:45 PM - 8:45 PM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Broadway Service with Power Chords", role:"Power Chords", type:"onstage", date:"2024-08b", sortDate:"2024-08-18", dates:"Aug 18, 2024", venue:"Congregational Church of Laconia, 69 Pleasant St, Laconia, NH 03246", times:"9:00 AM - 11:00 AM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Power Chords Caroling", role:"Power Chords", type:"onstage", date:"2024-12", sortDate:"2024-12-07", dates:"Dec 7, 2024", venue:"Meredith Library", times:"12:00 PM - 12:30 PM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Just Duet", role:"Power Chords", type:"onstage", date:"2025-01", sortDate:"2025-01-25", dates:"Jan 25, 2025", venue:"Colonial Theatre", times:"8:45 PM - 9:00 PM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Ladies Night Out", role:"Power Chords", type:"onstage", date:"2025-04", sortDate:"2025-04-11", dates:"Apr 11, 2025", venue:"Gilford Community Church, 19 Potter Hill Rd, Gilford, NH 03249", times:"6:00 PM - 7:00 PM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"ICONS Freddie Mercury", role:"Power Chords", type:"onstage", date:"2025-06", sortDate:"2025-06-21", dates:"June 21, 2025", venue:"Capitol Center for the Arts, 44 S Main St, Concord NH", times:"4:30 PM - 10:00 PM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Powerhouse Season Announcement Party", role:"Power Chords", type:"onstage", date:"2025-10", sortDate:"2025-10-19", dates:"Oct 19, 2025", venue:"Colonial Theatre, Laconia NH", code:"xPTC"},
+
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Powerhouse Improv Workshop Showcase", role:"Improv performance", creditType:"improv", type:"onstage", date:"2025-04b", sortDate:"2025-04-22", dates:"Apr 22, 2025", venue:"Taylor Community, 435 Union Ave, Laconia, NH 03246", times:"6:30 PM - 8:30 PM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Powerhouse Improv Workshop Showcase", role:"Improv performance", creditType:"improv", type:"onstage", date:"2025-05c", sortDate:"2025-05-27", dates:"May 27, 2025", venue:"Taylor Community, 435 Union Ave, Laconia, NH 03246", times:"6:30 PM - 8:30 PM", code:"xPTC"},
+  {company:"Winni Players: Extra", show:"Improv Olympics", role:"Improv performance", creditType:"improv", type:"onstage", date:"2025-10a", sortDate:"2025-10-18", dates:"Oct 18, 2025", venue:"The Winnipesaukee Playhouse, 33 Footlight Circle, Meredith, NH 03253", times:"7:30 PM - 10:00 PM", code:"xWP"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"Improv Showcase", role:"Improv performance", creditType:"improv", type:"onstage", date:"2025-11b", sortDate:"2025-11-04", dates:"Nov 4, 2025", venue:"Taylor Community, 435 Union Ave, Laconia, NH 03246", times:"7:00 PM - 9:00 PM", code:"xPTC"},
 ];
+
+
+const productionSupport = [
+  {show:"A Midsummer Night's Dream", work:"Build and strike set support", dates:"Feb 13-15, 2026", company:"Powerhouse Theatre Collaborative", label:"Extra / Production Support"},
+  {show:"The Diary of Anne Frank", work:"Build and strike set support · Custom electric candle build", dates:"Oct 10-12, 2025", company:"Powerhouse Theatre Collaborative", label:"Extra / Production Support"},
+  {show:"Tuck Everlasting", work:"Build and strike set support", dates:"May 10-12, 2024", company:"Powerhouse Theatre Collaborative", label:"Extra / Production Support"},
+  {show:"LOVE/SICK", work:"Build and strike set support", dates:"Feb 14-16, 2025", company:"Powerhouse Theatre Collaborative", label:"Extra / Production Support"},
+  {show:"The Sound of Music", work:"Strike support", dates:"Aug 11-13, 2023", company:"Powerhouse Theatre Collaborative", label:"Extra / Production Support"}
+];
+
+// Power Chords performances can be added as xPTC Extra / Special Event entries.
+// Use role:"Power Chords" and the next chronological xPTC code when they are concert/opening/special performances.
+
+
+// Auto-number Extra / Special Event codes by date.
+// Add future extras with code:"xPTC" and the page will display xPTC-1, xPTC-2, etc. in chronological order.
+function sortKey(item){
+  return item.sortDate || item.date;
+}
+
+function assignAutoCodes(items, prefix){
+  const extras = items
+    .filter(item => item.code === prefix || item.code.startsWith(prefix + '-'))
+    .sort((a,b) => sortKey(a).localeCompare(sortKey(b)));
+
+  extras.forEach((item, index) => {
+    item.displayCode = `${prefix}-${index + 1}`;
+  });
+}
+
+assignAutoCodes(shows, "xPTC");
+assignAutoCodes(shows, "xWP");
+
 
 const workshops = [
   {title:"Fall 2025 Powerhouse Improv Workshop", dates:"Tuesday evenings, Sept 16 – Nov 4, 2025"},
@@ -574,13 +701,50 @@ const workshops = [
 // shows count toward the tally up top — upcoming ones show on their own
 // list and join the count once the run is over. To mark a show upcoming,
 // just add status:"upcoming"; drop that field (or delete it) once it's done.
-const completedShows = shows.filter(s => s.status !== 'upcoming');
-const upcomingShows = shows.filter(s => s.status === 'upcoming');
+function isUpcomingShow(show){
+  if(show.status !== 'upcoming') return false;
+  const eventDate = sortKey(show);
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const compareDate = /^\d{4}-\d{2}-\d{2}$/.test(eventDate)
+    ? new Date(eventDate + "T23:59:59")
+    : new Date(eventDate.slice(0,7) + "-01T23:59:59");
+  return compareDate >= today;
+}
 
-completedShows.sort((a,b) => b.date.localeCompare(a.date)); // newest first
-upcomingShows.sort((a,b) => a.date.localeCompare(b.date));   // soonest first
+const completedShows = shows.filter(s => !isUpcomingShow(s));
+const upcomingShows = shows.filter(s => isUpcomingShow(s));
 
-const tagLabel = {onstage:"Onstage", crew:"Crew & Backstage"};
+completedShows.sort((a,b) => sortKey(b).localeCompare(sortKey(a))); // newest first
+upcomingShows.sort((a,b) => sortKey(a).localeCompare(sortKey(b)));   // soonest first
+
+const tagLabel = {
+  role:"Role",
+  choir:"Choir / Ensemble",
+  powerchords:"Power Chords",
+  improv:"Improv / Showcase",
+  crew:"Crew / Stage Mgmt",
+  support:"Production Support",
+  onstage:"Onstage"
+};
+
+function creditType(show){
+  if(show.creditType) return show.creditType;
+  if(show.type === "crew"){
+    if(/stage manager/i.test(show.role)) return "stagemgmt";
+    return "crew";
+  }
+  if(/power chords/i.test(show.role) || /power chords/i.test(show.show)) return "powerchords";
+  if(/improv/i.test(show.role) || /improv/i.test(show.show)) return "improv";
+  if(/choir|ensemble/i.test(show.role)) return "choir";
+  return "role";
+}
+
+function creditLabel(show){
+  const type = creditType(show);
+  if(type === "stagemgmt") return "Stage Mgmt";
+  return tagLabel[type] || tagLabel[show.type] || "Credit";
+}
 
 // ---- Upcoming list ----
 const upcomingEl = document.getElementById('upcoming-list');
@@ -597,8 +761,8 @@ if(upcomingShows.length === 0){
     item.innerHTML = `
       <div class="info">
         <div class="top-row">
-          <span class="tag ${s.type}">${tagLabel[s.type]}</span>
-          <span class="code-chip">${s.code}</span>
+          <span class="tag ${creditType(s)}">${creditLabel(s)}</span>
+          <span class="code-chip">${s.displayCode || s.code}</span>
         </div>
         <h3 class="display">${s.show}</h3>
         <div class="role">${s.role}</div>
@@ -620,15 +784,16 @@ completedShows.forEach(s => {
   const primary = matched[0];
   const card = document.createElement('div');
   card.className = 'card';
-  card.dataset.type = s.type;
+  card.dataset.type = creditType(s);
   card.dataset.companies = matched.map(c => c.name).join('|');
   if(primary) card.style.setProperty('--company-color', primary.color);
   card.innerHTML = `
     <div class="top-row">
-      <span class="tag ${s.type}">${tagLabel[s.type]}</span>
-      <span class="code-chip">${s.code}</span>
+      <span class="tag ${creditType(s)}">${creditLabel(s)}</span>
+      <span class="code-chip">${s.displayCode || s.code}</span>
     </div>
     <h3 class="display">${s.show}</h3>
+    <div class="credit-line">${creditLabel(s)}</div>
     <div class="role">${s.role}</div>
     <div class="meta">
       <span class="company"><span class="dot"></span><span class="name">${s.company}</span></span>
@@ -638,10 +803,17 @@ completedShows.forEach(s => {
 });
 
 // counts (by role type, completed shows only)
-const counts = {all: completedShows.length, onstage:0, crew:0};
-completedShows.forEach(s => counts[s.type]++);
+const counts = {all: completedShows.length, role:0, choir:0, powerchords:0, improv:0, crew:0};
+completedShows.forEach(s => {
+  const t = creditType(s);
+  if(t === "stagemgmt") counts.crew++;
+  else if(counts[t] !== undefined) counts[t]++;
+});
 document.getElementById('count-all').textContent = counts.all;
-document.getElementById('count-onstage').textContent = counts.onstage;
+document.getElementById('count-role').textContent = counts.role;
+document.getElementById('count-choir').textContent = counts.choir;
+document.getElementById('count-powerchords').textContent = counts.powerchords;
+document.getElementById('count-improv').textContent = counts.improv;
 document.getElementById('count-crew').textContent = counts.crew;
 
 // populate company dropdown from the companies config (auto-grows)
@@ -658,7 +830,7 @@ let activeType = 'all';
 function applyFilters(){
   const activeCompany = companySelect.value;
   document.querySelectorAll('.card').forEach(c => {
-    const typeOk = activeType === 'all' || c.dataset.type === activeType;
+    const typeOk = activeType === 'all' || c.dataset.type === activeType || (activeType === 'crew' && c.dataset.type === 'stagemgmt');
     const companyOk = activeCompany === 'all' || c.dataset.companies.split('|').includes(activeCompany);
     c.hidden = !(typeOk && companyOk);
   });
@@ -683,7 +855,7 @@ const statData = [{num: completedShows.length, lbl:"Total Productions"}];
 companies.forEach(c => {
   let main = 0, extra = 0;
   completedShows.forEach(s => {
-    s.code.split(/[,\s]+/).filter(Boolean).forEach(code => {
+    (s.displayCode || s.code).split(/[,\s]+/).filter(Boolean).forEach(code => {
       if(c.extraPrefix && code.startsWith(c.extraPrefix + '-')) extra++;
       else if(code.startsWith(c.prefix + '-')) main++;
     });
@@ -695,8 +867,7 @@ statData.push({num: workshops.length, lbl:"Workshops"});
 
 // Set Build & Strike — not tracked yet. Fill this in once you start
 // logging it; leave as null to show "—" until then.
-const setBuildStrikeCount = null;
-statData.push({num: setBuildStrikeCount === null ? "—" : setBuildStrikeCount, lbl:"Set Build & Strike"});
+statData.push({num: productionSupport.length, lbl:"Production Support / Extra"});
 
 const statsEl = document.getElementById('stats');
 statData.forEach(s => {
@@ -705,6 +876,25 @@ statData.forEach(s => {
   d.innerHTML = `<div class="num">${s.num}</div><div class="lbl">${s.lbl}</div>`;
   statsEl.appendChild(d);
 });
+
+
+// production support / extra
+const supportSection = document.getElementById('production-support-section');
+const supportEl = document.getElementById('production-support');
+if(productionSupport.length === 0){
+  supportSection.style.display = 'none';
+} else {
+  productionSupport.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'support-card';
+    card.innerHTML = `
+      <span class="tag support">${s.label}</span>
+      <h3 class="display">${s.show}</h3>
+      <div class="work">${s.work}</div>
+      <div class="support-meta">${s.dates}<br>${s.company}</div>`;
+    supportEl.appendChild(card);
+  });
+}
 
 // workshops
 const wEl = document.getElementById('workshops');
