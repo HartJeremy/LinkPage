@@ -434,14 +434,6 @@
   .tag.stagemgmt{background:#9b7bff; color:#fff;}
   .tag.support{background:#8bd450; color:var(--void);}
   .tag.improv{background:#fbbf24; color:var(--void);}
-  .card .credit-line{
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    color:var(--fog-dim);
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    margin-bottom:8px;
-  }
 
   /* ===== WORKSHOPS ===== */
   .notebook{
@@ -649,7 +641,7 @@ const shows = [
   {company:"Powerhouse Theatre Collaborative: Extra", show:"Power Chords Caroling", role:"Power Chords", type:"onstage", date:"2024-12", sortDate:"2024-12-07", dates:"Dec 7, 2024", venue:"Meredith Library", times:"12:00 PM - 12:30 PM", code:"xPTC"},
   {company:"Powerhouse Theatre Collaborative: Extra", show:"Just Duet", role:"Power Chords", type:"onstage", date:"2025-01", sortDate:"2025-01-25", dates:"Jan 25, 2025", venue:"Colonial Theatre", times:"8:45 PM - 9:00 PM", code:"xPTC"},
   {company:"Powerhouse Theatre Collaborative: Extra", show:"Ladies Night Out", role:"Power Chords", type:"onstage", date:"2025-04", sortDate:"2025-04-11", dates:"Apr 11, 2025", venue:"Gilford Community Church, 19 Potter Hill Rd, Gilford, NH 03249", times:"6:00 PM - 7:00 PM", code:"xPTC"},
-  {company:"Powerhouse Theatre Collaborative: Extra", show:"ICONS Freddie Mercury", role:"Power Chords", type:"onstage", date:"2025-06", sortDate:"2025-06-21", dates:"June 21, 2025", venue:"Capitol Center for the Arts, 44 S Main St, Concord NH", times:"4:30 PM - 10:00 PM", code:"xPTC"},
+  {company:"Powerhouse Theatre Collaborative: Extra", show:"ICONS Freddie Mercury", role:"Power Chords", type:"onstage", date:"2025-06", sortDate:"2025-06-21", dates:"June 21, 2025", venue:"BNH Stage, 16 S. Main St, Concord, NH 03301", times:"4:30 PM - 10:00 PM", code:"xPTC"},
   {company:"Powerhouse Theatre Collaborative: Extra", show:"Powerhouse Season Announcement Party", role:"Power Chords", type:"onstage", date:"2025-10", sortDate:"2025-10-19", dates:"Oct 19, 2025", venue:"Colonial Theatre, Laconia NH", code:"xPTC"},
 
   {company:"Powerhouse Theatre Collaborative: Extra", show:"Powerhouse Improv Workshop Showcase", role:"Improv performance", creditType:"improv", type:"onstage", date:"2025-04b", sortDate:"2025-04-22", dates:"Apr 22, 2025", venue:"Taylor Community, 435 Union Ave, Laconia, NH 03246", times:"6:30 PM - 8:30 PM", code:"xPTC"},
@@ -740,6 +732,14 @@ function creditType(show){
   return "role";
 }
 
+
+function shouldShowRole(show){
+  const role = (show.role || "").trim().toLowerCase();
+  const type = creditType(show);
+  if(type === "powerchords" && role === "power chords") return false;
+  return !!show.role;
+}
+
 function creditLabel(show){
   const type = creditType(show);
   if(type === "stagemgmt") return "Stage Mgmt";
@@ -765,7 +765,7 @@ if(upcomingShows.length === 0){
           <span class="code-chip">${s.displayCode || s.code}</span>
         </div>
         <h3 class="display">${s.show}</h3>
-        <div class="role">${s.role}</div>
+        ${shouldShowRole(s) ? `<div class="role">${s.role}</div>` : ""}
         ${s.venue ? `<div class="venue">${s.venue}</div>` : ''}
       </div>
       <div class="when">
@@ -793,8 +793,7 @@ completedShows.forEach(s => {
       <span class="code-chip">${s.displayCode || s.code}</span>
     </div>
     <h3 class="display">${s.show}</h3>
-    <div class="credit-line">${creditLabel(s)}</div>
-    <div class="role">${s.role}</div>
+    ${shouldShowRole(s) ? `${shouldShowRole(s) ? `<div class="role">${s.role}</div>` : ""}` : ""}
     <div class="meta">
       <span class="company"><span class="dot"></span><span class="name">${s.company}</span></span>
       <span>${s.dates}</span>
