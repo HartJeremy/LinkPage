@@ -74,16 +74,6 @@
           "status": "Upcoming",
           "times": "Fri & Sat 7:30 PM · Sun 2:00 PM",
           "url": "https://www.powerhousenh.org/shrek",
-          "active": true
-        },
-        {
-          "title": "Big Bad",
-          "date": "Sept 13-14, 2026",
-          "location": "Prescott Farm Environmental Education Center, 928 White Oaks Road, Laconia NH",
-          "role": "TBD",
-          "status": "Pending",
-          "times": "Times TBD",
-          "url": "https://www.powerhousenh.org/bigbad",
           "active": false
         },
         {
